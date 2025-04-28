@@ -4,7 +4,7 @@ import PrimaryButton from './PrimaryButton.vue';
 </script>
 
 <template>
-    <header class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-3">
+    <header class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm pt-3">
         <nav class="w-full">
             <div class="sm:flex sm:items-center sm:justify-between max-w-[85rem] mx-auto">
                 <Link :href="route('home')"
@@ -22,7 +22,7 @@ import PrimaryButton from './PrimaryButton.vue';
                 </div>
             </div>
             <ul
-                class="w-full flex flex-row items-center gap-5 mt-5 sm:justify-around sm:ps-5 bg-dark-green py-3 text-white">
+                class="w-full flex flex-row items-center gap-5 mt-3 sm:justify-around sm:ps-5 bg-dark-green py-3 text-white">
                 <!-- <li class="font-medium text-blue-500 focus:outline-hidden" href="#" aria-current="page">Landing</li> -->
                 <Link class="font-medium hover:text-light-green focus:outline-hidden focus:text-light-green uppercase"
                     href="#">
