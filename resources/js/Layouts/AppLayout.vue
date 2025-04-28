@@ -11,7 +11,7 @@ defineProps({
 
     <Navbar />
 
-    <main>
+    <main class="font-poppins">
         <slot></slot>
     </main>
 </template>
