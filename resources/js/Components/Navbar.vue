@@ -12,9 +12,9 @@ import PrimaryButton from './PrimaryButton.vue';
                 <div class="">IndoStep</div>
                 </Link>
                 <div class="flex items-center gap-x-4">
-                    <span
+                    <Link :href="route('contact')"
                         class="border-b-3 border-dark-green hover:border-light-green hover:text-gray-500 cursor-pointer me-4 font-light">Contact
-                        Info</span>
+                        Info</Link>
                     <div class="flex items-center relative">
                         <input type="text" name="" id="search" placeholder="SEARCH FOR TRIPS"
                             class="px-3 py-2 border border-gray-500 rounded-sm">
@@ -41,7 +41,7 @@ import PrimaryButton from './PrimaryButton.vue';
                 Trip Types
                 </Link>
                 <Link class="font-medium hover:text-light-green focus:outline-hidden focus:text-light-green uppercase"
-                    href="#">
+                    :href="route('about')">
                 About Us
                 </Link>
             </ul>

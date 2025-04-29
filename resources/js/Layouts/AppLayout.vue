@@ -8,11 +8,12 @@ defineProps({
 })
 </script>
 <template>
+
     <Head :title="title" />
 
-    <Navbar />
+    <main class="min-h-screen">
+        <Navbar />
 
-    <main>
         <slot></slot>
     </main>
 

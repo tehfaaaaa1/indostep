@@ -2,7 +2,7 @@
 import { Link } from '@inertiajs/vue3';
 </script>
 <template>
-    <div class="border-t border-gray-500 mt-3 pt-3 sm:flex sm:justify-evenly max-w-[85rem] mx-auto text-sm">
+    <footer class="border-t border-gray-500 mt-3 pt-3 sm:flex sm:justify-evenly max-w-[85rem] mx-auto text-sm">
         <div class="">
             <Link :href="route('home')" class="flex-none font-light text-2xl focus:outline-hidden focus:opacity-80">
             IndoStep</Link>
@@ -36,6 +36,6 @@ import { Link } from '@inertiajs/vue3';
                 </li>
             </ul>
         </div>
-    </div>
+    </footer>
     <p class="text-center text-sm my-4">Copyright &copy; 2025 IndoStep Tour Group &bull; All Rights Reserved.</p>
 </template>
