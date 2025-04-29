@@ -44,7 +44,7 @@ import AppLayout from '../Layouts/AppLayout.vue';
 
         <div class="relative py-8 container mx-auto">
             <div class="text-center mb-3">
-                <h1 class="text-xl font-semibold">How do You Like to Travel?</h1>
+                <h1 class="text-2xl font-semibold">How do You Like to Travel?</h1>
                 <p>By train or small ship? In a group of like-minded travelers or with a traveling companion you choose?
                     Select the type of trip you're looking for below.</p>
                 <div class="font-semibold tracking-wider mt-4 text-lg">Find Your Next Trip</div>
