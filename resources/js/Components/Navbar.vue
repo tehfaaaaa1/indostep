@@ -13,7 +13,7 @@ import PrimaryButton from './PrimaryButton.vue';
                 <div class="">IndoStep</div>
                 </Link>
                 <div class="flex items-center gap-x-4">
-                    <span class="border-b-4 border-dark-green hover:border-light-green hover:text-gray-500 cursor-pointer me-4">Contact Info</span>
+                    <span class="border-b-3 border-dark-green hover:border-light-green hover:text-gray-500 cursor-pointer me-4 font-light">Contact Info</span>
                     <input type="text" name="" id="search" placeholder="SEARCH FOR TRIPS"
                         class="px-3 py-2 border border-gray-500 rounded-sm">
                     <PrimaryButton>
