@@ -24,16 +24,18 @@ import PrimaryButton from './PrimaryButton.vue';
                                 d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
                         </svg>
                     </div>
-                    <PrimaryButton>
-                        RESERVE ONLINE
-                    </PrimaryButton>
+                    <Link :href="route('reserve')">
+                        <PrimaryButton>
+                            RESERVE ONLINE
+                        </PrimaryButton>
+                    </Link>
                 </div>
             </div>
             <ul
                 class="w-full flex flex-row items-center gap-5 mt-3 sm:justify-around sm:ps-5 bg-dark-green py-3 text-white">
                 <!-- <li class="font-medium text-blue-500 focus:outline-hidden" href="#" aria-current="page">Landing</li> -->
                 <Link class="font-medium hover:text-light-green focus:outline-hidden focus:text-light-green uppercase"
-                    href="#">
+                    :href="route('destination')">
                 Destinations
                 </Link>
                 <Link class="font-medium hover:text-light-green focus:outline-hidden focus:text-light-green uppercase"
