@@ -5,10 +5,10 @@ import AppLayout from '../Layouts/AppLayout.vue';
 <template>
     <AppLayout title="About Us">
         <div class="relative isolate bg-[url(img/hero.jpeg)] bg-cover h-[40vh] bg-center">
-            <div class="absolute backdrop-brightness-50 px-4 py-2 bottom-5 left-10">
+            <div class="absolute backdrop-brightness-40 px-4 py-2 bottom-5 left-10">
                 <div class="text-center text-white text-shadow-md">
                     <h1
-                        class="text-5xl font-semibold tracking-tight text-balance w-fit border-b-4 border-light-green mx-auto pb-3">
+                        class="text-4xl font-semibold tracking-tight text-balance w-fit border-b-4 border-light-green mx-auto pb-3">
                         About Our Programs
                     </h1>
                 </div>

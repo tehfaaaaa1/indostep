@@ -9,7 +9,7 @@ import PrimaryButton from './PrimaryButton.vue';
             <div class="sm:flex sm:items-center sm:justify-between max-w-[85rem] mx-auto">
                 <Link :href="route('home')" class="flex-none font-light text-2xl focus:outline-hidden focus:opacity-80"
                     href="#" aria-label="Brand">
-                <div class="">IndoStep</div>
+                <div class="text-dark-green hover:text-light-green">IndoStep</div>
                 </Link>
                 <div class="flex items-center gap-x-4">
                     <Link :href="route('contact')"
