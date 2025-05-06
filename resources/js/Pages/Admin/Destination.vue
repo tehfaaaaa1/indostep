@@ -31,7 +31,7 @@ const selectedDestination = computed(() => {
 const lct = window.location.origin
 </script>
 <template>
-    <AdminLayout title="Admin|Destination List" atas="true">
+    <AdminLayout title="Admin | Destination List" :atas="true">
         <template #search>
             <SearchInput v-model="searchVal" plch="Search Here" />
         </template>

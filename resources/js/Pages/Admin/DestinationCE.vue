@@ -548,8 +548,8 @@ const lct = window.location.origin
                                 class="flex justify-between items-center w-full">
                                 <div class="flex">
                                     Day
-                                    <TextInput v-model="item.day"
-                                        class="text-2xl font-semibold tracking-wider leading-5 text-dark-green !p-1 w-12" />
+                                    <TextInput v-model="item.day" 
+                                        class="text-2xl font-semibold tracking-wider leading-5 text-dark-green !p-1 w-12 text-center" />
                                 </div>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke-width="1.5" stroke="currentColor"
