@@ -154,8 +154,7 @@ class AdminController extends Controller
             $expedition = Expedition::firstOrNew(['id'=> $date['id'] ?? null]);
             $expedition->date = $date['date'];
             $expedition->destination_id =$destination->id;
-            $expedition->single_occupancy = $date['singleOcc'];
-            $expedition->double_occupancy = $date['doubleOcc'];
+            $expedition->price = $date['price'];
             $expedition->save();
             $processedExpeditionIds[]=$expedition->id;
         }
