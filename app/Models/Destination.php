@@ -11,7 +11,7 @@ class Destination extends Model
 {
     //
     protected $fillable =[
-        'name',
+        'destination',
         'island_id',
         'trip_type_id',
         'address',

@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class DestinationAccomodation extends Model
 {
     //
-    protected $fillable = [
+    protected $fillable =[
         'destination_id',
-        'accomodation_id'
+        'accomodation_id',
     ];
     public function destination() : BelongsTo {
         return $this->belongsTo(Destination::class, 'destination_id' );

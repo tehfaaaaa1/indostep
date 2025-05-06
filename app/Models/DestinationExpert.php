@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class DestinationExpert extends Model
 {
     //
-    protected $fillablee= [
+    protected $fillable =[
         'destination_id',
         'expert_id',
     ];

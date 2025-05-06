@@ -65,6 +65,7 @@
             'xl': 'sm:max-w-xl',
             '2xl': 'sm:max-w-2xl',
             '3xl': 'sm:max-w-3xl',
+            '4xl': 'sm:max-w-4xl',
             '6xl': 'sm:max-w-6xl',
         }[props.maxWidth];
     });
@@ -88,7 +89,7 @@
                     leave-from-class="opacity-100 translate-y-0 sm:scale-100"
                     leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                     <div v-show="show"
-                        class="mb-6 bg-white relative rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto"
+                        class="mb-6 bg-white relative  overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto"
                         :class="maxWidthClass">
                         <slot v-if="showSlot" />
                     </div>

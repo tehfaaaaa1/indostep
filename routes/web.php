@@ -38,6 +38,7 @@ Route::prefix('/reserve-online')->name('reservation.')->group(function () {
 Route::prefix('/admin')->name('admin.')->group(function () {
     Route::get('/destination', [AdminController::class,'destination'])->name('destination');
     Route::get('/destination-cef/{Destination:Slug?}', [AdminController::class,'destinationCEF'])->name('destinationCEF');
-    Route::get('/destination-ceb/{Destination:Slug?}', [AdminController::class,'destinationCEB'])->name('destinationCEB');
+    Route::post('/destination-ceb/{Destination:Slug?}', [AdminController::class,'destinationCEB'])->name('destinationCEB');
     Route::post('/create-expert', [AdminController::class,'createExpertAxios'])->name('create-expert-ax');
+    Route::post('/create-accomodation', [AdminController::class,'createAccomodationAxios'])->name('create-accomodation-ax');
 });
