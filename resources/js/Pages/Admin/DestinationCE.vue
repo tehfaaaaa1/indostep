@@ -16,41 +16,46 @@ const props = defineProps({
     type: Object,
     expert: Object,
     alrt: String,
-    destination:Object
+    destination: Object
 })
 const expert = ref(props.expert)
 const accomodation = ref(props.accomodation)
-const alert = computed(()=>props.alrt)
+const alert = computed(() => props.alrt)
 const form = useForm({
     image: props.destination?.image ?? '',
     name: props.destination?.destination,
     island: props.destination?.island_id,
-    expert: props.destination?.expert?.map(function(exp){
-        return {id_exdes: exp.id, id:exp.expert.id, name:exp.expert.name, biography:exp.expert.biography, image:exp.expert.image, skill: exp.expert.skill}
-    }) ?? [], 
+    expert: props.destination?.expert?.map(function (exp) {
+        return { id_exdes: exp.id, id: exp.expert.id, name: exp.expert.name, biography: exp.expert.biography, image: exp.expert.image, skill: exp.expert.skill }
+    }) ?? [],
     expertNew: { name: '', skill: '', image: String, bio: '', prev: '', id: null },
     type: props.destination?.trip_type_id,
-    accomodation: props.destination?.accomodation?.map(function(acc){
-        return {id_desacc: acc.id, id: acc.accomodation.id,name:acc.accomodation.name, description:acc.accomodation.description, image:acc.accomodation.image, address:acc.accomodation.address}
+    accomodation: props.destination?.accomodation?.map(function (acc) {
+        return { id_desacc: acc.id, id: acc.accomodation.id, name: acc.accomodation.name, description: acc.accomodation.description, image: acc.accomodation.image, address: acc.accomodation.address }
     }) ?? [],
     accomodationNew: { name: '', desc: '', address: '', image: '', prev: '', id: null },
     address: '',
-    overview: props.destination?.overview??{ paragraph: [], bullet: [] },
+    overview: props.destination?.overview ?? { paragraph: [], bullet: [] },
     itinerary: props.destination?.itinerary ?? [],
     prev: '',
     searchExp: '',
-    id:props.destination?.id
+    dates: props.destination?.expedition?.map(function(exp){
+        return {id: exp.id, date:exp.date,singleOcc:exp.single_occupancy, doubleOcc: exp.double_occupancy}
+    }) ?? [{ date: '', singleOcc: '', doubleOcc: '' }],
+    id: props.destination?.id
 })
-const save = ()=>{
-    form.post(route('admin.destinationCEB', form.id!= '' ?form.id : null),{
-    onSuccess:()=>{
-        setTimeout(()=>{
-            alrtt.value=true
-        },500)
-        setTimeout(()=>{
-            alrtt.value = false
-        }, 5000)
-    }})
+console.log(form.dates)
+const save = () => {
+    form.post(route('admin.destinationCEB', form.id != '' ? form.id : null), {
+        onSuccess: () => {
+            setTimeout(() => {
+                alrtt.value = true
+            }, 500)
+            setTimeout(() => {
+                alrtt.value = false
+            }, 5000)
+        }
+    })
 }
 // overview
 const pOverview = ref(form.overview.paragraph.length)
@@ -191,11 +196,11 @@ const currentIndex = ref(0);
 const totalSlides = computed(() => form.accomodation.length);
 
 const nextSlide = () => {
-    currentIndex.value = (currentIndex.value + 1) %totalSlides.value;
+    currentIndex.value = (currentIndex.value + 1) % totalSlides.value;
 };
 
 const prevSlide = () => {
-    currentIndex.value = (currentIndex.value - 1 +totalSlides.value) %totalSlides.value;
+    currentIndex.value = (currentIndex.value - 1 + totalSlides.value) % totalSlides.value;
 };
 
 const goToSlide = (index) => {
@@ -203,7 +208,11 @@ const goToSlide = (index) => {
 };
 
 const alrtt = ref(false)
-
+// Dates
+const addDates = () => {
+    let isi = { date: '', singleOcc: '', doubleOcc: '' }
+    form.dates.push(isi)
+}
 onMounted(() => {
     if (pOverview.value == 0) {
         addParagraphOverview('p')
@@ -212,11 +221,11 @@ onMounted(() => {
     if (cItinerary.value == 0) {
         addContentItinerary()
     }
-    if(alert.value){
-        setTimeout(()=>{
-            alrtt.value=true
-        },500)
-        setTimeout(()=>{
+    if (alert.value) {
+        setTimeout(() => {
+            alrtt.value = true
+        }, 500)
+        setTimeout(() => {
             alrtt.value = false
         }, 5000)
     }
@@ -263,52 +272,50 @@ const lct = window.location.origin
                 Save
             </PrimaryButton>
         </template>
-        <Transition
-            enter-active-class="transition ease-in duration-100 "
-            enter-from-class="transform opacity-0 translate-x-5"
-            enter-to-class="transform opacity-100 translate-x-0"
+        <Transition enter-active-class="transition ease-in duration-100 "
+            enter-from-class="transform opacity-0 translate-x-5" enter-to-class="transform opacity-100 translate-x-0"
             leave-active-class="transition ease-out duration-100 delay-0"
-            leave-from-class="transform opacity-100 translate-x-0"
-            leave-to-class="transform opacity-0 translate-x-5">
-                <div class="fixed right-20 top-20 max-w-sm" v-show="alrtt">
-                    <div class="bg-teal-50 border-t-2 cursor-pointer border-teal-500 rounded-lg p-4 dark:bg-teal-800/30" role="alert"
-                        tabindex="-1" aria-labelledby="hs-bordered-success-style-label" @click="alrtt=false">
-                        <div class="flex">
-                            <div class="shrink-0">
-                                <!-- Icon -->
-                                <span
-                                    class="inline-flex justify-center items-center size-8 rounded-full border-4 border-teal-100 bg-teal-200 text-teal-800 dark:border-teal-900 dark:bg-teal-800 dark:text-teal-400">
-                                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z">
-                                        </path>
-                                        <path d="m9 12 2 2 4-4"></path>
-                                    </svg>
-                                </span>
-                                <!-- End Icon -->
-                            </div>
-                            <div class="ms-3">
-                                <h3 id="hs-bordered-success-style-label"
-                                    class="text-gray-800 font-semibold dark:text-white">
-                                    Sukses {{ props.alrt }} Data
-                                </h3>
-                                <p class="text-sm text-gray-700 dark:text-neutral-400">
-                                    Anda Berhasil {{ props.alrt }} Data .
-                                </p>
-                            </div>
+            leave-from-class="transform opacity-100 translate-x-0" leave-to-class="transform opacity-0 translate-x-5">
+            <div class="fixed right-20 top-20 max-w-sm" v-show="alrtt">
+                <div class="bg-teal-50 border-t-2 cursor-pointer border-teal-500 rounded-lg p-4 dark:bg-teal-800/30"
+                    role="alert" tabindex="-1" aria-labelledby="hs-bordered-success-style-label" @click="alrtt = false">
+                    <div class="flex">
+                        <div class="shrink-0">
+                            <!-- Icon -->
+                            <span
+                                class="inline-flex justify-center items-center size-8 rounded-full border-4 border-teal-100 bg-teal-200 text-teal-800 dark:border-teal-900 dark:bg-teal-800 dark:text-teal-400">
+                                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z">
+                                    </path>
+                                    <path d="m9 12 2 2 4-4"></path>
+                                </svg>
+                            </span>
+                            <!-- End Icon -->
+                        </div>
+                        <div class="ms-3">
+                            <h3 id="hs-bordered-success-style-label"
+                                class="text-gray-800 font-semibold dark:text-white">
+                                Sukses {{ props.alrt }} Data
+                            </h3>
+                            <p class="text-sm text-gray-700 dark:text-neutral-400">
+                                Anda Berhasil {{ props.alrt }} Data .
+                            </p>
                         </div>
                     </div>
                 </div>
-            </Transition>
+            </div>
+        </Transition>
         <div class="p-6">
             <div class="border-2 border-gray-200 min-h-screen rounded-sm">
                 <!-- Hero -->
                 <div class="w-full">
                     <label for="image" class="">
                         <div class="h-[60vh]" v-if="form.prev != '' || form.image != ''">
-                            <div class="" v-if="form.prev == '' || form.prev== null">
-                                <img :src="lct+'/img/destination/'+form.image" alt="" class="w-full object-contain h-[60vh]">
+                            <div class="" v-if="form.prev == '' || form.prev == null">
+                                <img :src="lct + '/img/destination/' + form.image" alt=""
+                                    class="w-full object-contain h-[60vh]">
                             </div>
                             <div class="max-h-[60vh]" v-else-if="form.prev != ''">
                                 <img :src="form.prev" alt="" class="w-full object-contain h-[60vh]">
@@ -693,8 +700,10 @@ const lct = window.location.origin
                             <div class="relative overflow-hidden">
                                 <div class="relative flex transition-transform duration-500 ease-in-out"
                                     :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
-                                    <div v-for="(item, index) in form.accomodation" :key="index" class="w-full flex-shrink-0">
-                                        <img :src="lct+'/img/accomodation/'+item.image" class="w-full h-auto object-cover">
+                                    <div v-for="(item, index) in form.accomodation" :key="index"
+                                        class="w-full flex-shrink-0">
+                                        <img :src="lct + '/img/accomodation/' + item.image"
+                                            class="w-full h-auto object-cover">
                                     </div>
                                 </div>
 
@@ -716,7 +725,8 @@ const lct = window.location.origin
                                 </button>
 
                                 <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
-                                    <button v-for="(slide, index) in form.accomodation" :key="index" @click="goToSlide(index)"
+                                    <button v-for="(slide, index) in form.accomodation" :key="index"
+                                        @click="goToSlide(index)"
                                         :class="{ 'bg-blue-500': currentIndex === index, 'bg-gray-300': currentIndex !== index }"
                                         class="w-3 h-3 rounded-full focus:outline-none"></button>
                                 </div>
@@ -732,7 +742,57 @@ const lct = window.location.origin
 
                     <div class="w-full px-4 mt-12 min-h-[70vh] border-b-1 border-dark-green pb-6 mb-4">
                         <h1 class=" font-bold text-dark-green text-3xl tracking-wider">Dates & Prices</h1>
-
+                        <div class="flex flex-col">
+                            <div class="-m-1.5 overflow-x-auto">
+                                <div class="p-1.5 min-w-full inline-block align-middle">
+                                    <div class="overflow-hidden">
+                                        <table class="min-w-full divide-y divide-gray-200">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                        Date</th>
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                        Double Occupancy</th>
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
+                                                        Single Occupancy</th>
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="divide-y divide-gray-200 ">
+                                                <tr class="mt-2" v-for="(item, index) in form.dates" :key="index">
+                                                    <td>
+                                                        <input
+                                                            class="py-2.5 sm:py-3 px-2 block w-2xs border-b-2 border-dark-green sm:text-sm ring-0 outline-none disabled:opacity-50 disabled:pointer-events-none tracking-wider leading-4"
+                                                            type="date" v-model="item.date" />
+                                                    </td>
+                                                    <td>
+                                                        <TextInput v-model="item.singleOcc"
+                                                            plch="Single Occupancy Price(Rp)" />
+                                                    </td>
+                                                    <td>
+                                                        <TextInput v-model="item.doubleOcc"
+                                                            plch="Double Occupacy Price(Rp)" />
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <button class="flex space-x-1 mt-2" @click="addDates()">
+                                            <p>Add date</p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -35,7 +35,21 @@ class UserController extends Controller
     {
         $destination = Destination::filter(request(['island', 'type', 'month']))->get();
         return Inertia::render('Destination/Index', [
-            'destination' => $destination
+             'destination'=> collect($destination)->map(function ($des) {
+                return [
+                    'id'=> $des->id,
+                    'destination'=> $des->destination,
+                    'island_id'=>$des->island_id,
+                    'trip_type_id'=> $des->trip_type_id,
+                    'image'=> $des->image,
+                    'type'=> $des->type,
+                    'expedition'=> $des->expedition,
+                    'overview'=> json_decode($des->overview),
+                    'itinerary'=> json_decode($des->itinerary),
+                    'expert'=> $des->expert,
+                    'accomodation'=> $des->accomodation
+                ];
+            })
         ]);
     }
     public function reserve()
