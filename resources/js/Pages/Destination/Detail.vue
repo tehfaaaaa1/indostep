@@ -255,7 +255,7 @@ const lct = window.location.origin
                                                 class="px-6 py-4 whitespace-nowrap text-xl font-semibold tracking-wider">
                                                 Rp. {{ Number(item.double_occupancy).toLocaleString() }}
                                             </td>
-                                            <td>
+                                            <td class="flex justify-end px-6 py-4">
                                                 <PrimaryButton
                                                     class=" !tracking-wider !p-4 !px-12">
                                                     <Link :href="route('reservation.reserve')">Reserve now</Link>
