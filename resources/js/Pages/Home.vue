@@ -117,40 +117,40 @@ const subSearch = () => {
             </div>
             <div class="grid grid-cols-3 gap-2">
                 <div class="relative w-fit group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/bromo.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Mt. Bromo</p>
                 </div>
                 <div class="relative group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/kebumen.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Kebumen, Central Java</p>
                 </div>
                 <div class="relative group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/tegallang-rice-terrace.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Tegallang Rice Terrace</p>
                 </div>
                 <div class="relative group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/bali.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Beachside Architecture in Bali</p>
                 </div>
                 <div class="relative group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/mt-agung.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Mt. Agung</p>
                 </div>
                 <div class="relative group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/lembongan.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Lembongan, Bali</p>
                 </div>
             </div>
         </div>
