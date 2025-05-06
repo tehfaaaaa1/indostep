@@ -3,11 +3,15 @@ import { Link } from '@inertiajs/vue3';
 </script>
 <template>
     <div class="bg-black-green">
-        <footer class=" mt-3 pt-10 pb-6 sm:flex sm:justify-evenly max-w-[85rem] mx-auto text-sm border-b-1 border-light-green">
-            <div class="max-w-xs">
-                <Link :href="route('home')" class="flex-none font-light text-2xl focus:outline-hidden focus:opacity-80 text-white hover:text-light-green">
-                IndoStep</Link>
-                <div class="text-white tracking-wider mt-1">Grand Sightseeing and Adventure in Indonesia</div>
+        <footer
+            class=" mt-3 pt-10 pb-6 sm:flex sm:justify-evenly max-w-[85rem] mx-auto text-sm border-b-1 border-light-green">
+            <div class="max-w-sm">
+                <Link :href="route('home')">
+                <img src="/public/img/ineco.png" alt="" class="w-28">
+                <!-- <h1 class="text-2xl tracking-tight font-semibold leading-2 mt-1">Indo <br><span
+                            class="font-black text-dark-green tracking-tighter text-3xl ps-0.5">Step</span></h1> -->
+                </Link>
+                <div class="text-white tracking-wider mt-1">Travel with Purpose. Leave Only Footprints.</div>
             </div>
             <div class="text-white">
                 <h2 class="text-sm font-medium uppercase mb-3">Menu</h2>
@@ -39,7 +43,8 @@ import { Link } from '@inertiajs/vue3';
             </div>
         </footer>
         <div class="py-4">
-            <p class="text-center text-xs text-white tracking-widest">Copyright &copy; 2025 INEco Tour Group &bull; All Rights Reserved.</p>
+            <p class="text-center text-xs text-white tracking-widest">Copyright &copy; 2025 INEco Tour Group &bull; All
+                Rights Reserved.</p>
         </div>
     </div>
 </template>

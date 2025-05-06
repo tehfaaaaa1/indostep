@@ -79,31 +79,25 @@ const subSearch = () => {
         <div class="relative bg-black-green text-white py-8 lg:py-14">
             <div class="container mx-auto max-w-6xl">
                 <div class="flex space-x-8 justify-start">
-                    <img src="/public/img/hero.jpeg" alt="" width="575">
-                    <div class="flex flex-col justify-around items-start py-8">
-                        <h2 class="text-3xl font-semibold">Title</h2>
-                        <p class="sm:text-sm/6 w-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-                            atque
-                            earum id voluptatum
-                            accusamus minima ex, a sint quam, dolores sequi molestiae? Commodi tenetur eaque autem
-                            impedit aut necessitatibus explicabo!</p>
-                        <PrimaryButton class="uppercase hover:!bg-white hover:!text-black-green !text-dark-green">View
-                            Detail</PrimaryButton>
+                    <img src="/public/img/gallery/elang.jpg" alt="" width="575" class="h-[325px] object-cover">
+                    <div class="flex flex-col justify-center items-start py-8">
+                        <h2 class="text-3xl font-semibold">Eye-catching View</h2>
+                        <p class="sm:text-sm/6 w-sm">
+                            Trail the mountains of Java, witness the beauty of the green-lush landscape, and dive into
+                            the blue sea off shore. Many wonderful experiences await you!
+                        </p>
                     </div>
                 </div>
                 <div class="my-8 lg:my-16"></div>
                 <div class="flex space-x-8 justify-end">
-                    <div class="flex flex-col justify-around items-start py-8">
-                        <h2 class="text-3xl font-semibold">Title</h2>
-                        <p class="sm:text-sm/6 w-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-                            atque
-                            earum id voluptatum
-                            accusamus minima ex, a sint quam, dolores sequi molestiae? Commodi tenetur eaque autem
-                            impedit aut necessitatibus explicabo!</p>
-                        <PrimaryButton class="uppercase hover:!bg-white hover:!text-black-green !text-dark-green">View
-                            Detail</PrimaryButton>
+                    <div class="flex flex-col justify-center items-start py-8">
+                        <h2 class="text-3xl font-semibold">Don't miss the moment!</h2>
+                        <p class="sm:text-sm/6 w-sm text-pretty">
+                            Engage your senses and save a full collection of exciting memories. Travel at your own pace
+                            with friends and family. Don't forget to capture the sights!
+                        </p>
                     </div>
-                    <img src="/public/img/hero.jpeg" alt="" width="575">
+                    <img src="/public/img/gallery/komodo.jpg" alt="" width="575" class="h-[325px] object-cover">
                 </div>
             </div>
         </div>
@@ -158,15 +152,23 @@ const subSearch = () => {
         <div class="relative bg-black-green text-white py-8">
             <div class="container mx-auto">
                 <h2 class="text-2xl font-semibold mb-6 pb-2 border-b-2 w-fit mx-auto">Learn more About Us</h2>
-                <div class="flex gap-x-4">
+                <div class="flex gap-x-12">
                     <img src="/public/img/contact-img.jpg" alt="" width="500">
-                    <div class="">
-                        <p class="sm:text-sm/6 mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
-                            atque
-                            earum id voluptatum
-                            accusamus minima ex, a sint quam, dolores sequi molestiae? Commodi tenetur eaque autem
-                            impedit aut necessitatibus explicabo!</p>
-                        <PrimaryButton>
+                    <div class="flex flex-col justify-center items-start mb-8">
+                        <h2 class="text-xl font-semibold">About INEco</h2>
+                        <p class="text-sm text-pretty text-justify">Welcome to INEco, Indonesia Eco-tour, your gateway to responsible adventures in Indonesia's
+                            breathtaking natural
+                            landscapes and vibrant cultures. We are an ecotourism group dedicated to offering
+                            immersive travel
+                            experiences that not only showcase the incredible biodiversity and beauty of our archipelago
+                            but
+                            also prioritize minimal environmental impact and maximum benefit for the local communities
+                            who call
+                            these places home. Through carefully crafted trips, we aim to connect travelers with nature
+                            in a
+                            meaningful way, fostering appreciation and contributing directly to conservation efforts.
+                        </p>
+                        <PrimaryButton class="mt-4">
                             <Link :href="route('about')" class="w-fit">About Us</Link>
                         </PrimaryButton>
                     </div>
