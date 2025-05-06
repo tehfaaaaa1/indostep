@@ -31,6 +31,39 @@ class UserController extends Controller
     {
         return Inertia::render('Contact');
     }
+    public function destinationDetail($id) {
+        $destinations = Destination::where('id', $id)->get();
+        if(!is_null($id)){
+            foreach($destinations as $destination){
+                foreach($destination?->expert as $ex){
+                    $p = $ex->expert;
+                }
+                foreach($destination?->accomodation as $ac){
+                    $a= $ac->accomodation;
+                }
+            }
+        }
+        $desti = collect($destinations)->map(function ($dest) {
+            return [
+                'id'=> $dest->id,
+                'destination'=> $dest->destination,
+                'island_id'=> $dest->island_id,
+                'trip_type_id'=> $dest->trip_type_id,
+                'overview'=> json_decode($dest->overview),
+                'itinerary'=> json_decode($dest->itinerary),
+                'image'=> $dest->image,
+                'created_at'=> $dest->created_at,
+                'updated_at'=> $dest->updated_at,
+                'expert'=> $dest->expert,
+                'accomodation'=> $dest->accomodation,
+                'expedition'=>$dest->expedition,
+                'type'=> $dest->type
+            ];
+        })->first();
+        return Inertia::render('Destination/Detail',[
+           'destination'=> $desti,
+        ]);
+    }
     public function destination()
     {
         $destination = Destination::filter(request(['island', 'type', 'month']))->get();

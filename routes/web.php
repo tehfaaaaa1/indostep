@@ -29,6 +29,7 @@ Route::get('/contact', function () {
 
 Route::prefix('/destination')->name('destination.')->group(function () {
     Route::get('/', [UserController::class, 'destination'])->name('list');
+    Route::get('/detail/{Destination:Id}', [UserController::class, 'destinationDetail'])->name('detail');
 });
 
 Route::prefix('/reserve-online')->name('reservation.')->group(function () {

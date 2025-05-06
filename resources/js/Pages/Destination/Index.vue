@@ -34,15 +34,17 @@ const lct = window.location.origin
     <AppLayout title="Admin|Destination List" atas="true">
         <div class="max-w-7xl mx-auto mt-10">
             <div class="p-2 grid grid-cols-4">
-                <div class="w-xs border border-gray-200" v-for="(item, index) in selectedDestination" :key="index">
-                    <img :src="lct + '/img/destination/' + item.image" alt="" class="w-full object-cover object-center">
-                    <div class="p-3 space-y-2">
-                        <h1 class="text-lg text-black-green font-semibold tracking-wide">{{ item.destination }}</h1>
-                        <h2 class="font-medium text-xs tracking-wide uppercase">{{ getDay(item.itinerary) }} Days Starting
-                            At</h2>
-                        <h1 class="text-lg text-black-green font-medium tracking-wide"> Rp. {{ Number(item.expedition[0].double_occupancy).toLocaleString() }}</h1>
-                        <h2 class="font-medium text-xs tracking-wide">Trip Type: {{ item.type.name }}</h2>
-                    </div>
+                <div class="w-xs border border-gray-200 cursor-pointer" v-for="(item, index) in selectedDestination" :key="index">
+                    <Link :href="route('destination.detail', item.id)">
+                        <img :src="lct + '/img/destination/' + item.image" alt="" class="w-full object-cover object-center">
+                        <div class="p-3 space-y-2">
+                            <h1 class="text-lg text-black-green font-semibold tracking-wide">{{ item.destination }}</h1>
+                            <h2 class="font-medium text-xs tracking-wide uppercase">{{ getDay(item.itinerary) }} Days Starting
+                                At</h2>
+                            <h1 class="text-lg text-black-green font-medium tracking-wide"> Rp. {{ Number(item.expedition[0].double_occupancy).toLocaleString() }}</h1>
+                            <h2 class="font-medium text-xs tracking-wide">Trip Type: {{ item.type.name }}</h2>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>
