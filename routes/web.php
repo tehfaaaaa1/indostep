@@ -35,6 +35,7 @@ Route::prefix('/reserve-online')->name('reservation.')->group(function () {
     Route::get('/', [UserController::class, 'reserve'])->name('reserve');
 });
 
+
 Route::prefix('/admin')->name('admin.')->group(function () {
     Route::get('/destination', [AdminController::class,'destination'])->name('destination');
     Route::get('/destination-cef/{Destination:Slug?}', [AdminController::class,'destinationCEF'])->name('destinationCEF');

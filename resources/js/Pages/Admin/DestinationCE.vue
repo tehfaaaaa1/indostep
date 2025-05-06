@@ -117,7 +117,7 @@ const handleImageExpert = (event) => {
 const lct = window.location.origin
 </script>
 <template>
-    <AdminLayout title="Admin|Destination Detail" atas="true">
+    <AdminLayout title="Admin | Destination Detail" :atas="true">
         <template #search>
             <PrimaryButton class="">
                 Save
@@ -194,7 +194,7 @@ const lct = window.location.origin
                             <h1 class="font-semibold text-lg tracking-wide">Bullet</h1>
                             <ul class="list-disc px-4 space-y-3">
                                 <li v-for="(item, index) in form.overview.bullet" :key="index">
-                                    <TextInput v-model="item.content" plch="Bullet Description" class="!w-md    " />
+                                    <TextInput v-model="item.content" plch="Bullet Description" class="!w-md" />
                                 </li>
                             </ul>
                             <button class="flex space-x-1 mt-4" @click="addParagraphOverview('b')">
@@ -204,7 +204,6 @@ const lct = window.location.origin
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
-
                             </button>
                         </div>
                     </div>

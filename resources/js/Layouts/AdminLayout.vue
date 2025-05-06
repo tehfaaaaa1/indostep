@@ -92,7 +92,7 @@ const checkCurrentGroup = computed(() => {
                     </div>
                 </div>
                 <div class="">
-                    <p class="text-sm tracking-wide pe-8">Admin</p>
+                    <p class="text-sm tracking-wide pe-8">{{ $page.props.auth.user.name }}</p>
                 </div>
             </div>
         </div>
