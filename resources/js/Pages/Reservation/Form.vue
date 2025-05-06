@@ -96,14 +96,17 @@ import { router } from '@inertiajs/vue3';
                     <img src="/public/img/payment/card.jpg" alt="" width="150" class="object-contain">
                     <img src="/public/img/payment/Logo_ovo_purple.png" alt="" width="150" class="object-contain">
                 </div>
-                <p>We accept these payments. Press ensure the data is correct before confirming below. <br>
+                <p>We accept these payments. Press ensure the data is correct before confirming below.</p>
+                <div class="flex flex-col mt-2">
+                    <label for="message" class="text-sm">Message (Optional)</label>
+                    <textarea name="" id="message" class="mt-1 w-1/2 min-h-18 border border-gray-300 px-2 py-1"></textarea><br>
                     <span class="text-dark-green">
                         Confirming will send an email to your Person-In-Charge's email address.
                     </span>
-                </p>
-                <button type="button" @click="router.post(route('reservation.post'))" class="mt-6 ms-auto">
-                    <PrimaryButton class="">Confirm</PrimaryButton>
-                </button>
+                    <button type="button" @click="router.post(route('reservation.post'))" class="mt-6 ms-auto">
+                        <PrimaryButton class="">Confirm</PrimaryButton>
+                    </button>
+                </div>
             </div>
         </div>
     </AppLayout>
