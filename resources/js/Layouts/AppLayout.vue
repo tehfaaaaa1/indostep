@@ -10,12 +10,14 @@ defineProps({
 <template>
 
     <Head :title="title" />
+    <div class="min-h-screen">
 
-    <main class="min-h-screen">
         <Navbar />
-
-        <slot></slot>
-    </main>
+        
+        <main class="">
+            <slot></slot>
+        </main>
+    </div>
 
     <CustomFooter />
 </template>
