@@ -116,7 +116,7 @@ const lct = window.location.origin
                 <p class="mt-2 tracking-wide leading-4">A National Geographic Expert will accompany each
                     departure to
                     share insights and rare behind-the-scenes perspectives.</p>
-                <div class="grid grid-cols-3 gap-4 mx-auto mt-3 max-w-4xl">
+                <div class="grid grid-cols-3 gap-4 mx-auto mt-3 max-w-7xl">
 
                     <div class="flex flex-col items-center text-center"
                         v-for="(item, index) in props.destination.expert" :key="index">
