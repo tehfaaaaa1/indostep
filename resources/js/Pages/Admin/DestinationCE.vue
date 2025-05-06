@@ -39,9 +39,9 @@ const form = useForm({
     itinerary: props.destination?.itinerary ?? [],
     prev: '',
     searchExp: '',
-    dates: props.destination?.expedition?.map(function(exp){
-        return {id: exp.id, date:exp.date,singleOcc:exp.single_occupancy, doubleOcc: exp.double_occupancy}
-    }) ?? [{ date: '', singleOcc: '', doubleOcc: '' }],
+    dates: props.destination?.expedition?.map(function (exp) {
+        return { id: exp.id, date: exp.date, price: exp.price }
+    }) ?? [{ date: '', price: '' }],
     id: props.destination?.id
 })
 console.log(form.dates)
@@ -210,7 +210,7 @@ const goToSlide = (index) => {
 const alrtt = ref(false)
 // Dates
 const addDates = () => {
-    let isi = { date: '', singleOcc: '', doubleOcc: '' }
+    let isi = { date: '', price: '', doubleOcc: '' }
     form.dates.push(isi)
 }
 onMounted(() => {
@@ -483,7 +483,7 @@ const lct = window.location.origin
                     </Biography>
                     <div class="w-full mt-12 min-h-[40vh] border-b-1 border-dark-green pb-6">
                         <h1 class="font-bold text-dark-green text-3xl tracking-wider">Expert On This Trip</h1>
-                        <p class="mt-2 tracking-wide leading-4">A National Geographic Expert will accompany each
+                        <p class="mt-2 tracking-wide leading-4 text-sm">A National Geographic Expert will accompany each
                             departure to
                             share insights and rare behind-the-scenes perspectives.</p>
                         <div class="flex space-x-2">
@@ -548,7 +548,7 @@ const lct = window.location.origin
                                 class="flex justify-between items-center w-full">
                                 <div class="flex">
                                     Day
-                                    <TextInput v-model="item.day" 
+                                    <TextInput v-model="item.day"
                                         class="text-2xl font-semibold tracking-wider leading-5 text-dark-green !p-1 w-12 text-center" />
                                 </div>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -648,7 +648,7 @@ const lct = window.location.origin
                     </DialogModal>
                     <div class="w-full px-4 mt-12 min-h-[70vh] border-b-1 border-dark-green pb-6 mb-4">
                         <h1 class=" font-bold text-dark-green text-3xl tracking-wider">Accomodation</h1>
-                        <p class="mt-1.5 tracking-wider">This expedition features some of the world’s finest
+                        <p class="mt-1.5 tracking-wider text-sm">This expedition features some of the world’s finest
                             accommodations.
                             These hotels and lodges have been selected for their exceptional guest service, splendid
                             amenities
@@ -754,10 +754,7 @@ const lct = window.location.origin
                                                         Date</th>
                                                     <th scope="col"
                                                         class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
-                                                        Double Occupancy</th>
-                                                    <th scope="col"
-                                                        class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">
-                                                        Single Occupancy</th>
+                                                        Price</th>
                                                     <th scope="col"
                                                         class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">
                                                     </th>
@@ -771,12 +768,7 @@ const lct = window.location.origin
                                                             type="date" v-model="item.date" />
                                                     </td>
                                                     <td>
-                                                        <TextInput v-model="item.singleOcc"
-                                                            plch="Single Occupancy Price(Rp)" />
-                                                    </td>
-                                                    <td>
-                                                        <TextInput v-model="item.doubleOcc"
-                                                            plch="Double Occupacy Price(Rp)" />
+                                                        <TextInput v-model="item.price" plch="Price (RP)" />
                                                     </td>
                                                 </tr>
                                             </tbody>
