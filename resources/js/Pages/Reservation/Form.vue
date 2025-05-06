@@ -8,9 +8,6 @@ import AppLayout from '../../Layouts/AppLayout.vue';
     <AppLayout title="Reserve Online">
         <div class="relative py-8 container mx-auto">
             <h1 class="text-center text-2xl font-semibold tracking-wider">Book a Trip</h1>
-            <p class="max-w-xl text-center mx-auto">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni
-                minima iusto numquam! Dolore distinctio sit porro, aspernatur at laborum. Repellendus, quidem adipisci?
-            </p>
 
             <div class="mt-8">
                 <h2 class="text-xl font-medium">1. Select Trip Plan</h2>
@@ -94,6 +91,12 @@ import AppLayout from '../../Layouts/AppLayout.vue';
             </div>
             <div class="mt-8">
                 <h2 class="text-xl font-medium">4. Payment</h2>
+                <div class="flex flex-wrap gap-x-4">
+                    <img src="/public/img/payment/gopay.png" alt="" width="150" class="object-contain">
+                    <img src="/public/img/payment/Logo_dana_blue.png" alt="" width="150" class="object-contain">
+                    <img src="/public/img/payment/card.jpg" alt="" width="150" class="object-contain">
+                    <img src="/public/img/payment/Logo_ovo_purple.png" alt="" width="150" class="object-contain">
+                </div>
                 <p>We accept these payments. Press ensure the data is correct before confirming below. <br>
                     <span class="text-dark-green">
                         Confirming will send you an email to your Person-In-Charge's email address.
