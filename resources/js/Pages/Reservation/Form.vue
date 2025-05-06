@@ -99,7 +99,7 @@ import AppLayout from '../../Layouts/AppLayout.vue';
                 </div>
                 <p>We accept these payments. Press ensure the data is correct before confirming below. <br>
                     <span class="text-dark-green">
-                        Confirming will send you an email to your Person-In-Charge's email address.
+                        Confirming will send an email to your Person-In-Charge's email address.
                     </span>
                 </p>
                 <PrimaryButton class="mt-6 ms-auto">Confirm</PrimaryButton>

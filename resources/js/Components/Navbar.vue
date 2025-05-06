@@ -1,5 +1,5 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 import PrimaryButton from './PrimaryButton.vue';
 </script>
 
@@ -13,8 +13,9 @@ import PrimaryButton from './PrimaryButton.vue';
                 </Link>
                 <div class="flex items-center gap-x-4">
                     <Link :href="route('contact')"
-                        class="border-b-3 border-dark-green hover:border-light-green hover:text-gray-500 cursor-pointer me-4 font-light">Contact
-                        Info</Link>
+                        class="border-b-3 border-dark-green hover:border-light-green hover:text-gray-500 cursor-pointer me-4 font-light">
+                    Contact
+                    Info</Link>
                     <div class="flex items-center relative">
                         <input type="text" name="" id="search" placeholder="SEARCH FOR TRIPS"
                             class="px-3 py-2 border border-gray-500 rounded-sm">
@@ -25,10 +26,14 @@ import PrimaryButton from './PrimaryButton.vue';
                         </svg>
                     </div>
                     <Link :href="route('reserve')">
-                        <PrimaryButton>
-                            RESERVE ONLINE
-                        </PrimaryButton>
+                    <PrimaryButton>
+                        RESERVE ONLINE
+                    </PrimaryButton>
                     </Link>
+                    <button @click="router.post(route('logout'), $page.props.auth.user.id)"
+                        class="text-red-500 hover:text-red-600 cursor-pointer" v-if="$page.props.auth.user?.id">
+                        Logout
+                    </button>
                 </div>
             </div>
             <ul
