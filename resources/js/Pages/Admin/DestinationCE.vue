@@ -76,7 +76,7 @@ async function createExpert() {
 const addExpert = (value) => {
     form.expert.push(value)
 }
-const checkExpert = () => {
+const checkExpert = (val) => {
     const exp = form.expert.find(p => p.id == val)
     if (!exp) {
         return false
@@ -277,39 +277,49 @@ const lct = window.location.origin
                         <p class="mt-2 tracking-wide leading-4">A National Geographic Expert will accompany each
                             departure to
                             share insights and rare behind-the-scenes perspectives.</p>
-                        <Dropdown align="left" class="mt-2 w-fit">
-                            <template #trigger>
-                                <div
-                                    class="mt-2 p-2.5 bg-dark-green font-medium text-xs rounded-sm text-white leading-6 tracking-wider hover:bg-transparent cursor-pointer hover:ring-2 hover:ring-dark-green hover:text-dark-green transition ease-in duration-150">
-                                    <p>Choose Expert</p>
-                                </div>
-                            </template>
-                            <template #content>
-                                <div class="flex flex-col space-y-2 min-h-64">
-                                    <PrimaryButton @click="expertModal = true"
-                                        class="!rounded-none !bg-dark-green !text-white">Create New Expert
-                                    </PrimaryButton>
+                        <div class="flex space-x-2">
+                            <Dropdown align="left" class="mt-2 w-fit" >
+                                <template #trigger>
+                                    <PrimaryButton>Choose Expert</PrimaryButton>
+                                </template>
+                                <template #content>
+                                    <div class="flex flex-col space-y-2 min-h-64">
+                                        <SearchInput class="!rounded-none" />
+                                            <button type="button" @click="addExpert(item)" 
+                                                v-for="(item, index) in expert" :key="index"
+                                                :class="checkExpert(item.id) ? 'bg-gray-200':''"
+                                                class="cursor-pointer p-2 hover:bg-gray-200 text-start w-full flex justify-between items-center">
+                                                <span class="text-sm font-medium">
+                                                    {{ item.name + "-" + item.skill }}
+                                                </span>
+                                                <div class="" v-if="checkExpert(item.id)">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m4.5 12.75 6 6 9-13.5" />
+                                                    </svg>
+                                                </div>
+                                            </button>
 
-                                    <SearchInput class="!rounded-none" />
-
-                                    <button type="button" @click="addExpert(item)" v-for="(item, index) in expert"
-                                        :key="index" :class="{ checkExpert: '' }"
-                                        class="cursor-pointer p-2 hover:bg-gray-200 text-start">
-                                        <span>
-                                            {{ item.name + "-" + item.skill }}
-                                        </span>
-                                    </button>
-
-                                    <div class="" v-if="expert.length == 0">
-                                        <p class="text-sm text-center tracking-wide font-semibold">Tidak Ada expert</p>
+                                        <div class="" v-if="expert.length == 0">
+                                            <p class="text-sm text-center tracking-wide font-semibold">Tidak Ada expert
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </template>
-                        </Dropdown>
-                        <div class="grid grid-cols-3 gap-4 mx-auto">
-                            {{ form.expert }}
-                            <div class="" v-for="(item, index) in form.expert" :key="index">
-                                <img :src="lct + '/img/expert' + item.image" />
+                                </template>
+                            </Dropdown>
+                            <PrimaryButton @click="expertModal = true"
+                                class="!bg-dark-green !text-white mt-2 hover:ring-2 hover:ring-dark-green hover:!bg-transparent hover:!text-dark-green">
+                                Create
+                                New Expert
+                            </PrimaryButton>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mx-auto mt-3 max-w-4xl">
+                            <div class="flex flex-col items-center text-center" v-for="(item, index) in form.expert" :key="index">
+                                <img :src="lct + '/img/expert/' + item.image" class="rounded-full w-32 h-32 object-cover object-center"/>
+                                <h1 class="font-semibold mt-6 leading-6 tracking-wider">{{ item.name }}</h1>
+                                <h2 class="leading-3 tracking-wide text-sm">{{ item.skill }}</h2>
+                                <button class="mt-3 font-bold border-b-2 border-dark-greeen">View Bio</button>
                             </div>
                         </div>
                     </div>
