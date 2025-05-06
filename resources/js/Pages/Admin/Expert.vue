@@ -8,18 +8,18 @@ import PrimaryButton from '../../Components/PrimaryButtonGua.vue';
 import DialogModal from '../../Components/DialogModal.vue';
 
 const props = defineProps({
-    accomodation: Object
+    expert: Object
 })
-const accomodation = ref(props.accomodation)
+const expert = ref(props.expert)
 const form = useForm({
     name:'',
     image:'',
     prev:'',
-    address:'',
-    desc:'',
+    skill:'',
+    bio:'',
     id:''
 })
-const handleImageAccomodation = (event) => {
+const handleImageExpert = (event) => {
     form.image = event.target.files[0]
     var input = event.target;
     if (input.files) {
@@ -31,22 +31,22 @@ const handleImageAccomodation = (event) => {
     }
 }
 const editData = (id)=>{
-    const data = accomodation.value.find(p=> p.id == id)
+    const data = expert.value.find(p=> p.id == id)
     form.id = data.id
     form.name = data.name
-    form.address = data.address 
+    form.bio = data.biography 
     form.image = data.image
-    form.desc = data.description
+    form.skill = data.skill
     console.log(form.image)
     modalCE.value=true
 }
 const modalCE = ref(false)
 const searchVal = ref(null)
-const selectedaccomodation = computed(() => {
-    if (!accomodation.value) {
+const selectedexpert = computed(() => {
+    if (!expert.value) {
         return [];
     }
-    return accomodation.value.filter(me => {
+    return expert.value.filter(me => {
         const searchQueryLower = searchVal.value ? searchVal.value.toLowerCase() : '';
         const expertNameLower = me.name ? me.name.toLowerCase() : '';
 
@@ -55,16 +55,16 @@ const selectedaccomodation = computed(() => {
         return searchMatch;
     })
 })
-async function createAccomodation() {
+async function createExpert() {
     try {
-        const response = await axios.post(route('admin.create-accomodation-ax'), form, {
+        const response = await axios.post(route('admin.create-expert-ax'), form, {
             headers: {
                 'Content-Type': 'multipart/form-data', // Penting untuk mengirim file
             },
         })
         const data = ref(response.data.data)
-        const allAccomodation = ref(response.data.accomodationAll)
-        accomodation.value = allAccomodation.value
+        const allAccomodation = ref(response.data.expertAll)
+        expert.value = allAccomodation.value
     }
     catch (error) {
         if (error) {
@@ -82,26 +82,24 @@ const lct = window.location.origin
         <DialogModal :show="modalCE" maxWidth="3xl">
             <template #title>
                 <div class="px-4">
-                    <h1 class="text-xl font-semibold tracking-wider text-center">Create New Accomodation
+                    <h1 class="text-xl font-semibold tracking-wider text-center">Create New Expert
                     </h1>
                 </div>
             </template>
             <template #content>
                 <div class="px-4">
                     <div class="">
-                        <TextInput :rq="true" class="" v-model="form.name" plch="Accomodation Name" />
+                        <TextInput :rq="true" class="" v-model="form.name" plch="Full Name" />
                     </div>
                     <div class="my-4">
-                        <textarea v-model="form.address"
-                            class="indent-2 p-2 block w-full border-b-2 border-dark-green sm:text-sm !outline-none !ring-0 disabled:opacity-50 disabled:pointer-events-none"
-                            rows="3" placeholder="Accomodation Address"></textarea>
+                        <TextInput :rq="true" class="" v-model="form.skill" plch="Skill" />
                     </div>
                     <div class="relative">
                         <label for="imageAcc" class="">
                             <div class="min-h-[30vh]"
                                 v-if="form.prev != '' || form.image != ''">
                                 <div class="" v-if="form.prev == ''">
-                                    <img :src="lct+'/img/accomodation/'+form.image" alt="">
+                                    <img :src="lct+'/img/expert/'+form.image" alt="">
                                 </div>
                                 <div class="w-full flex justify-center items-center"
                                     v-else-if="form.prev != ''">
@@ -116,19 +114,19 @@ const lct = window.location.origin
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                                     </svg>
-                                    <p class="font-medium leading-4 tracking-wide">Image Accomodation
+                                    <p class="font-medium leading-4 tracking-wide">Image Expert
                                     </p>
                                 </div>
                             </div>
                         </label>
-                        <input @input="handleImageAccomodation($event)" type="file" name="" id="imageAcc" multiple
+                        <input @input="handleImageExpert($event)" type="file" name="" id="imageAcc" multiple
                             class="hidden">
                     </div>
                     <article>
                         <div class=" mt-5">
-                            <textarea v-model="form.desc"
+                            <textarea v-model="form.bio"
                                 class="indent-2 p-2 block w-full border-1 rounded-sm border-dark-green sm:text-sm !outline-none !ring-0 disabled:opacity-50 disabled:pointer-events-none"
-                                rows="3" placeholder="Accomodation Description"></textarea>
+                                rows="3" placeholder="Biography"></textarea>
                         </div>
                     </article>
                 </div>
@@ -138,7 +136,7 @@ const lct = window.location.origin
                     <button type="button"
                         class="inline-flex items-center px-4 py-3 border-transparent rounded-md bg-red-500 text-white text-xs tracking-wide font-semibold hover:bg-transparent hover:ring-2 hover:ring-red-500 hover:text-red-500 transition duration-150 ease-in-out"
                         @click="modalCE = false">Close</button>
-                    <PrimaryButton @click=" modalCE = false; createAccomodation()"
+                    <PrimaryButton @click=" modalCE = false; createExpert()"
                         class="!bg-blue-600 text-white">Submit</PrimaryButton>
                 </div>
             </template>
@@ -146,19 +144,19 @@ const lct = window.location.origin
         <div class="p-8">
             <button type="button" @click="modalCE = true"
                 class="inline-flex items-center px-4 py-2.5 bg-light-green text-dark-green text-xs font-semibold rounded-sm tracking-wider leading-5 hover:bg-transparent hover:ring-1 hover:ring-dark-green transition ease-in-out duration-150">
-            Create accomodation</button>
+            Create Expert</button>
         </div>
         <div class="p-2 grid grid-cols-3">
-            <div class="w-sm border border-gray-200 flex flex-col justify-between" v-for="(item, index) in selectedaccomodation" :key="index">
+            <div class="w-sm border border-gray-200 flex flex-col justify-between" v-for="(item, index) in selectedexpert" :key="index">
                 <div class="">
-                    <img :src="lct + '/img/accomodation/' + item.image" alt=""
+                    <img :src="lct + '/img/expert/' + item.image" alt=""
                         class="w-full object-cover object-center h-54">
                     <div class="p-3 space-y-2 ">
                         <h1 class="text-lg text-black-green font-semibold tracking-wide">{{ item.name }}</h1>
                         <!-- <h2 class="font-medium text-xs tracking-wide uppercase">{{ getDay(item.itinerary) }} Days Starting
                             At</h2> -->
-                        <h2 class="font-medium text-xs tracking-wide line-clamp-5 text-gray-700">{{ item.description }}</h2>
-                        <h2 class="font-medium text-xs tracking-wide text-gray-700">address: {{ item.address }}</h2>
+                        <h2 class="font-medium text-xs tracking-wide line-clamp-5 text-gray-700">{{ item.bio }}</h2>
+                        <h2 class="font-medium text-xs tracking-wide text-gray-700">address: {{ item.skill }}</h2>
                     </div>
                 </div>
                 <div class="text-center pb-4">
