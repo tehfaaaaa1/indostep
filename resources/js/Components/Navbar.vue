@@ -9,13 +9,13 @@ import PrimaryButton from './PrimaryButton.vue';
             <div class="sm:flex sm:items-center sm:justify-between max-w-[85rem] mx-auto">
                 <Link :href="route('home')" class="flex-none font-light text-2xl focus:outline-hidden focus:opacity-80"
                     href="#" aria-label="Brand">
-                <div class="text-dark-green hover:text-light-green">IndoStep</div>
+                <img src="/public/img/ineco_logo.jpeg" alt="" class="h-[42px] w-16 object-cover">
                 </Link>
                 <div class="flex items-center gap-x-4">
                     <Link :href="route('contact')"
                         class="border-b-3 border-dark-green hover:border-light-green hover:text-gray-500 cursor-pointer me-4 font-light">
-                    Contact
-                    Info</Link>
+                    Contact Info
+                    </Link>
                     <div class="flex items-center relative">
                         <input type="text" name="" id="search" placeholder="SEARCH FOR TRIPS"
                             class="px-3 py-2.5 border border-gray-500 rounded-sm text-sm text-gray-700 placeholder:text-xs focus:outline-none hover:outline-none focus:border-dark-green focus:ring-dark-green focus:ring-1">
@@ -26,14 +26,19 @@ import PrimaryButton from './PrimaryButton.vue';
                         </svg>
                     </div>
                     <Link :href="route('reservation.reserve')">
-                        <PrimaryButton>
-                            RESERVE ONLINE
-                        </PrimaryButton>
+                    <PrimaryButton>
+                        RESERVE ONLINE
+                    </PrimaryButton>
                     </Link>
-                    <button @click="router.post(route('logout'), $page.props.auth.user.id)"
-                        class="text-red-500 hover:text-red-600 cursor-pointer" v-if="$page.props.auth.user?.id">
-                        Logout
-                    </button>
+                    <div class="flex items-center gap-x-4 ps-4 border-l-2 border-light-green" v-if="$page.props.auth.user?.id">
+                        <Link :href="route('admin.destination')">
+                            <PrimaryButton>Dashboard</PrimaryButton>
+                        </Link>
+                        <button @click="router.post(route('logout'), $page.props.auth.user.id)"
+                            class="text-red-500 hover:text-red-600 cursor-pointer">
+                            Logout
+                        </button>
+                    </div>
                 </div>
             </div>
             <ul

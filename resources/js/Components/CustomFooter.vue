@@ -39,7 +39,7 @@ import { Link } from '@inertiajs/vue3';
             </div>
         </footer>
         <div class="py-4">
-            <p class="text-center text-xs text-white tracking-widest">Copyright &copy; 2025 IndoStep Tour Group &bull; All Rights Reserved.</p>
+            <p class="text-center text-xs text-white tracking-widest">Copyright &copy; 2025 INEco Tour Group &bull; All Rights Reserved.</p>
         </div>
     </div>
 </template>

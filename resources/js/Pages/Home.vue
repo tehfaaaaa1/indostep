@@ -1,65 +1,73 @@
 <script setup>
-import { Link, useForm, usePage } from '@inertiajs/vue3';
+import { Link, useForm } from '@inertiajs/vue3';
 import PrimaryButton from '../Components/PrimaryButtonGua.vue';
 import AppLayout from '../Layouts/AppLayout.vue';
 import ContactCard from '../Components/ContactCard.vue';
 const props = defineProps({
-    island:Object,
-    type:Object
+    island: Object,
+    type: Object
 })
 const form = useForm({
     island: '',
     type: '',
-    month:''
+    month: ''
 })
-const subSearch = ()=>{
+const subSearch = () => {
     form.get('destination.list')
 }
 </script>
 
 <template>
-    <AppLayout title="Welcome to IndoStep">
+    <AppLayout title="Welcome to INEco">
         <div class="relative isolate bg-[url(img/hero.jpeg)] bg-cover">
-            <div class="mx-auto h-[70vh] sm:h-[80vh] lg:h-[90vh] backdrop-brightness-75 flex flex-col justify-around">
+            <div
+                class="mx-auto h-[70vh] sm:h-[80vh] lg:h-[90vh] backdrop-brightness-75 flex flex-col justify-center relative">
                 <div class="text-center text-white text-shadow-md">
+                    <!-- <img src="/public/img/ineco.jpeg" alt="" class="w-32 h-32 mb-4 mx-auto rounded-full object-cover"> -->
                     <h1
                         class="sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-balance w-fit mx-auto pb-3">
                         Grand Sightseeing and Adventure in Indonesia
                     </h1>
-                    <div class="mx-auto w-fit">
+                    <p class="text-3xl font-medium text-shadow-lg hover:underline w-fit mx-auto">Travel with Purpose.
+                        Leave Only Footprints.</p>
+                    <div class="mx-auto w-fit mt-4">
                         <Link class="" :href="route('destination.list')">
-                            <h1 class="text-xl font-semibold hover:underline w-fit">View All Trip & Dates</h1>
+                        <h1 class="text-xl font-semibold hover:underline w-fit">View All Trip & Dates</h1>
                         </Link>
                     </div>
                 </div>
-                <div class="hidden mx-auto box-border lg:block">
-                    <h1 class="text-xl text-white text-center tracking-wider mb-2 font-semibold">Find Your Next Trip</h1>
-                    <div class="grid grid-cols-4 max-w-6xl gap-2 " >
+                <div class="hidden lg:block absolute bottom-12 inset-x-0">
+                    <h1 class="text-xl text-white text-center tracking-wider mb-2 font-semibold">Find Your Next Trip
+                    </h1>
+                    <div class="grid grid-cols-4 max-w-6xl gap-2 mx-auto">
                         <div class="">
                             <select name="" id="" v-model="form.island"
-                            class="py-3 px-4 pe-9 w-full max-h-56 border-gray-200 text-sm focus:border-light-green focus:ring-2 focus:ring-light-green  disabled:opacity-50 disabled:pointer-events-none outline-none bg-white">
+                                class="py-3 px-4 pe-9 w-full max-h-56 border-gray-200 text-sm focus:border-light-green focus:ring-2 focus:ring-light-green  disabled:opacity-50 disabled:pointer-events-none outline-none bg-white">
                                 <option value="">Destination</option>
-                                <option v-for="(item, index) in island" :key="index" :value="item.name">{{ item.name }}</option>
+                                <option v-for="(item, index) in island" :key="index" :value="item.name">{{ item.name }}
+                                </option>
                             </select>
                         </div>
-    
+
                         <div class="">
                             <select name="" id="" v-model="form.type"
-                            class="py-3 px-4 pe-9  w-full border-gray-200 text-sm focus:border-light-green focus:ring-2 focus:ring-light-green  disabled:opacity-50 disabled:pointer-events-none outline-none bg-white">
+                                class="py-3 px-4 pe-9  w-full border-gray-200 text-sm focus:border-light-green focus:ring-2 focus:ring-light-green  disabled:opacity-50 disabled:pointer-events-none outline-none bg-white">
                                 <option value="">Trip Type</option>
-                                <option v-for="(item, index) in type" :key="index" :value="item.name">{{ item.name }}</option>
+                                <option v-for="(item, index) in type" :key="index" :value="item.name">{{ item.name }}
+                                </option>
                             </select>
                         </div>
-    
+
                         <div class="">
-                            <select name="" id="" 
-                            class="py-3 px-4 pe-9  w-full border-gray-200 text-sm focus:border-light-green focus:ring-2 focus:ring-light-green disabled:opacity-50 disabled:pointer-events-none outline-none bg-white">
+                            <select name="" id=""
+                                class="py-3 px-4 pe-9  w-full border-gray-200 text-sm focus:border-light-green focus:ring-2 focus:ring-light-green disabled:opacity-50 disabled:pointer-events-none outline-none bg-white">
                                 <option value="">Departure Month</option>
                             </select>
                         </div>
-    
+
                         <div class="">
-                            <PrimaryButton type="button" @click="subSearch" class="w-xs !py-3 justify-center uppercase !text-dark-green hover:!text-white">
+                            <PrimaryButton type="button" @click="subSearch"
+                                class="w-xs !py-3 justify-center uppercase !text-dark-green hover:!text-white">
                                 Search
                             </PrimaryButton>
                         </div>
@@ -74,22 +82,26 @@ const subSearch = ()=>{
                     <img src="/public/img/hero.jpeg" alt="" width="575">
                     <div class="flex flex-col justify-around items-start py-8">
                         <h2 class="text-3xl font-semibold">Title</h2>
-                        <p class="sm:text-sm/6 w-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis atque
+                        <p class="sm:text-sm/6 w-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+                            atque
                             earum id voluptatum
                             accusamus minima ex, a sint quam, dolores sequi molestiae? Commodi tenetur eaque autem
                             impedit aut necessitatibus explicabo!</p>
-                        <PrimaryButton class="uppercase hover:!bg-white hover:!text-black-green !text-dark-green">View Detail</PrimaryButton>
+                        <PrimaryButton class="uppercase hover:!bg-white hover:!text-black-green !text-dark-green">View
+                            Detail</PrimaryButton>
                     </div>
                 </div>
                 <div class="my-8 lg:my-16"></div>
                 <div class="flex space-x-8 justify-end">
                     <div class="flex flex-col justify-around items-start py-8">
                         <h2 class="text-3xl font-semibold">Title</h2>
-                        <p class="sm:text-sm/6 w-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis atque
+                        <p class="sm:text-sm/6 w-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
+                            atque
                             earum id voluptatum
                             accusamus minima ex, a sint quam, dolores sequi molestiae? Commodi tenetur eaque autem
                             impedit aut necessitatibus explicabo!</p>
-                        <PrimaryButton class="uppercase hover:!bg-white hover:!text-black-green !text-dark-green">View Detail</PrimaryButton>
+                        <PrimaryButton class="uppercase hover:!bg-white hover:!text-black-green !text-dark-green">View
+                            Detail</PrimaryButton>
                     </div>
                     <img src="/public/img/hero.jpeg" alt="" width="575">
                 </div>
@@ -105,40 +117,40 @@ const subSearch = ()=>{
             </div>
             <div class="grid grid-cols-3 gap-2">
                 <div class="relative w-fit group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/bromo.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Mt. Bromo</p>
                 </div>
                 <div class="relative group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/kebumen.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Kebumen, Central Java</p>
                 </div>
                 <div class="relative group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/tegallang-rice-terrace.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Tegallang Rice Terrace</p>
                 </div>
                 <div class="relative group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/bali.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Beachside Architecture in Bali</p>
                 </div>
                 <div class="relative group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/mt-agung.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Mt. Agung</p>
                 </div>
                 <div class="relative group cursor-pointer">
-                    <img src="/public/img/hero.jpeg" alt="" width="400">
+                    <img src="/public/img/gallery/lembongan.jpg" alt="" width="400" class="h-[215px]">
                     <p
                         class="absolute inset-x-0 bottom-0 translate-y-2 text-center bg-dark-green/60 text-white opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition py-2">
-                        Raja Ampat</p>
+                        Lembongan, Bali</p>
                 </div>
             </div>
         </div>
@@ -174,7 +186,7 @@ const subSearch = ()=>{
                                     d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z" />
                             </svg>
                         </div>
-                        indostep.group@gmail.com
+                        ineco.group@gmail.com
                     </ContactCard>
                     <ContactCard>
                         <div class="rounded-full shadow-md p-4 mb-2">
@@ -194,7 +206,7 @@ const subSearch = ()=>{
                                     d="M0-240v-63q0-43 44-70t116-27q13 0 25 .5t23 2.5q-14 21-21 44t-7 48v65H0Zm240 0v-65q0-32 17.5-58.5T307-410q32-20 76.5-30t96.5-10q53 0 97.5 10t76.5 30q32 20 49 46.5t17 58.5v65H240Zm540 0v-65q0-26-6.5-49T754-397q11-2 22.5-2.5t23.5-.5q72 0 116 26.5t44 70.5v63H780Zm-455-80h311q-10-20-55.5-35T480-370q-55 0-100.5 15T325-320ZM160-440q-33 0-56.5-23.5T80-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T160-440Zm640 0q-33 0-56.5-23.5T720-520q0-34 23.5-57t56.5-23q34 0 57 23t23 57q0 33-23 56.5T800-440Zm-320-40q-50 0-85-35t-35-85q0-51 35-85.5t85-34.5q51 0 85.5 34.5T600-600q0 50-34.5 85T480-480Zm0-80q17 0 28.5-11.5T520-600q0-17-11.5-28.5T480-640q-17 0-28.5 11.5T440-600q0 17 11.5 28.5T480-560Zm1 240Zm-1-280Z" />
                             </svg>
                         </div>
-                        @indostep.group
+                        @ineco.group
                     </ContactCard>
                     <ContactCard>
                         <div class="rounded-full shadow-md p-4 mb-2">
@@ -204,7 +216,7 @@ const subSearch = ()=>{
                                     d="M120-120v-560h240v-80l120-120 120 120v240h240v400H120Zm80-80h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 320h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm0-160h80v-80h-80v80Zm240 480h80v-80h-80v80Zm0-160h80v-80h-80v80Z" />
                             </svg>
                         </div>
-                        Castorice Street No. 1, Jakarta, West Java, Indonesia
+                        Castorice Street No. 1, Jakarta, Indonesia
                     </ContactCard>
                 </div>
             </div>

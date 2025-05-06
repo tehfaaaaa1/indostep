@@ -16,14 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone_number');
-            $table->text('address');
-            $table->string('country');
-            $table->string('zip_code');
-            $table->string('city');
-            $table->string('province');
             $table->foreignId('group_id')->constrained(
-                table:'reservation_groups',
-                indexName:'reservations_group_id'
+                table: 'reservation_groups',
+                indexName: 'reservations_group_id'
             );
             $table->timestamps();
         });

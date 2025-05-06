@@ -33,7 +33,9 @@ Route::prefix('/destination')->name('destination.')->group(function () {
 
 Route::prefix('/reserve-online')->name('reservation.')->group(function () {
     Route::get('/', [UserController::class, 'reserve'])->name('reserve');
+    Route::post('/post', [UserController::class, 'reservePost'])->name('post');
 });
+
 
 Route::prefix('/admin')->name('admin.')->group(function () {
     Route::get('/destination', [AdminController::class,'destination'])->name('destination');

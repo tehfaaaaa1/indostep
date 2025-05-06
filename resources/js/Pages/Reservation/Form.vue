@@ -1,8 +1,7 @@
 <script setup>
 import PrimaryButton from '../../Components/PrimaryButton.vue';
 import AppLayout from '../../Layouts/AppLayout.vue';
-
-
+import { router } from '@inertiajs/vue3';
 </script>
 <template>
     <AppLayout title="Reserve Online">
@@ -102,7 +101,9 @@ import AppLayout from '../../Layouts/AppLayout.vue';
                         Confirming will send an email to your Person-In-Charge's email address.
                     </span>
                 </p>
-                <PrimaryButton class="mt-6 ms-auto">Confirm</PrimaryButton>
+                <button type="button" @click="router.post(route('reservation.post'))" class="mt-6 ms-auto">
+                    <PrimaryButton class="">Confirm</PrimaryButton>
+                </button>
             </div>
         </div>
     </AppLayout>

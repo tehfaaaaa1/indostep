@@ -20,7 +20,7 @@ const form = useForm({
         <div class="basis-1/2 flex flex-col items-center justify-center">
             <AuthCard class="bg-white">
                 <form @submit.prevent="form.post(route('login.post'))">
-                    <h1 class="text-xl font-semibold text-center mb-4">Login dulu masbro</h1>
+                    <h1 class="text-xl font-semibold text-center mb-4">Login to INEco</h1>
                     <div class="flex flex-col mt-2">
                         <label for="email" class="mb-1">Email</label>
                         <input type="email" name="" id="email" class="border border-gray-500 px-2 py-1" required

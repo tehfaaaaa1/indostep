@@ -42,7 +42,7 @@ const checkCurrentGroup = computed(() => {
             <!-- Header -->
             <header class="mt-4 flex justify-center items-center gap-x-2">
                 <!-- <img :src="'../image/main-logo.jpg'" alt="" class="w-28"> -->
-                <div class="">
+                <div class="text-white">
                     <h1 class="text-2xl tracking-tight font-semibold leading-2 mt-1">Indo <br><span
                             class="font-black text-dark-green tracking-tighter text-3xl ps-0.5">Step</span></h1>
                 </div>
@@ -68,7 +68,7 @@ const checkCurrentGroup = computed(() => {
             <nav
                 class="h-full mt-5   overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
                 <div class="flex flex-col justify-between h-full">
-                    <div class=" pb-0 w-full flex flex-col flex-wrap ">
+                    <div class=" pb-0 w-full flex flex-col flex-wrap">
                         <NavLink :href="route('admin.destination')" :active="checkCurrentGroup == 'destination'">
                             Destination</NavLink>
                         <NavLink :href="route('admin.destination')" :active="route().current('admin')">Accomodation</NavLink>
@@ -92,7 +92,7 @@ const checkCurrentGroup = computed(() => {
                     </div>
                 </div>
                 <div class="">
-                    <p class="text-sm tracking-wide pe-8">Admin</p>
+                    <p class="text-sm tracking-wide pe-8">{{ $page.props.auth.user.name }}</p>
                 </div>
             </div>
         </div>

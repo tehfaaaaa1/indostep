@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('expeditions', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->string('single_occupancy');
-            $table->string('double_occupancy');
+            $table->string('price');
             $table->foreignId('destination_id')->nullable()->constrained(
                 table:'destinations',
                 indexName:'expeditions_destination_id'
