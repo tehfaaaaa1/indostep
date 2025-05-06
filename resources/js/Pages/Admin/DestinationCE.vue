@@ -1,7 +1,7 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3';
 import AdminLayout from '../../Layouts/AdminLayout.vue';
-import PrimaryButton from '../../Components/PrimaryButton.vue';
+import PrimaryButton from '../../Components/PrimaryButtonGua.vue';
 import TextInput from '../../Components/TextInput.vue';
 import Dropdown from '../../Components/Dropdown.vue';
 import DialogModal from '../../Components/DialogModal.vue';
