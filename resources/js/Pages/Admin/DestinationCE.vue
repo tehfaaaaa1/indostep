@@ -723,9 +723,9 @@ const lct = window.location.origin
                             </div>
                             <div class="">
                                 <h1 class="text-xl font-semibold text-black-green tracking-wide">
-                                    {{ form.accomodation[currentIndex].name }}
+                                    {{ form.accomodation[currentIndex]?.name }}
                                 </h1>
-                                <p>{{ form.accomodation[currentIndex].description }}</p>
+                                <p>{{ form.accomodation[currentIndex]?.description }}</p>
                             </div>
                         </div>
                     </div>

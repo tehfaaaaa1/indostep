@@ -1,7 +1,7 @@
 <script setup>
 import AuthCard from '../../Components/AuthCard.vue';
 import { Head, useForm } from '@inertiajs/vue3';
-import PrimaryButton from '../../Components/PrimaryButton.vue';
+import PrimaryButton from '../../Components/PrimaryButtonGua.vue';
 
 const form = useForm({
     name: null,

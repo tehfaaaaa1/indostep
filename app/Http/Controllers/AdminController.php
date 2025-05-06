@@ -18,7 +18,19 @@ class AdminController extends Controller
 {
     //
     public function destination(){
-        return Inertia::render('Admin/Destination');
+        $destination = Destination::all();
+        foreach($destination as $d){
+            $a= $d->type;
+            foreach($d->expert as $p){
+                $c= $p->expert;
+            }
+            foreach($d->accomodation as $a){
+                $b= $a->accomodation;
+            }
+        }
+        return Inertia::render('Admin/Destination',[
+            'destination'=> $destination
+        ]);
     }
     public function destinationCEF($slug = null) {
         $alrt = request()->session()->get('alrt');

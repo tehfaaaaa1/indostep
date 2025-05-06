@@ -18,6 +18,7 @@ const checkCurrentGroup = computed(() => {
         return 'destination';
     } 
 })
+const lct = window.location.origin
 </script>
 <template>
 
@@ -26,7 +27,7 @@ const checkCurrentGroup = computed(() => {
        <!-- Navigation Toggle -->
     <div class="lg:hidden py-16 text-center">
         <button type="button"
-            class="py-2 px-3 inline-flex justify-center items-center gap-x-2 text-start bg-gray-800 border border-gray-800 text-white text-sm font-medium rounded-lg shadow-2xs align-middle hover:bg-gray-950 focus:outline-hidden focus:bg-gray-900"
+            class="py-2 px-3 inline-flex justify-center items-center gap-x-2 text-start bg-gray-800 border border-gray-800 text-sm font-medium rounded-lg shadow-2xs align-middle hover:bg-gray-950 focus:outline-hidden focus:bg-gray-900"
             aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-sidebar-basic-usage"
             aria-label="Toggle navigation" data-hs-overlay="#hs-sidebar-basic-usage">
             Open
@@ -41,10 +42,10 @@ const checkCurrentGroup = computed(() => {
         <div class="relative flex flex-col h-full max-h-full ">
             <!-- Header -->
             <header class="mt-4 flex justify-center items-center gap-x-2">
-                <!-- <img :src="'../image/main-logo.jpg'" alt="" class="w-28"> -->
-                <div class="text-white">
-                    <h1 class="text-2xl tracking-tight font-semibold leading-2 mt-1">Indo <br><span
-                            class="font-black text-dark-green tracking-tighter text-3xl ps-0.5">Step</span></h1>
+                <div class="">
+                    <img :src="lct+'/img/ineco.png'" alt="" class="w-28">
+                    <!-- <h1 class="text-2xl tracking-tight font-semibold leading-2 mt-1">Indo <br><span
+                            class="font-black text-dark-green tracking-tighter text-3xl ps-0.5">Step</span></h1> -->
                 </div>
                 <div class="lg:hidden -me-2">
                     <!-- Close Button -->
