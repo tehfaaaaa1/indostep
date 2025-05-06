@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Destination;
 use App\Models\DestinationAccomodation;
 use App\Models\DestinationExpert;
+use App\Models\Expedition;
 use Inertia\Inertia;
 use App\Models\Expert;
 use App\Models\Island;
@@ -29,7 +30,21 @@ class AdminController extends Controller
             }
         }
         return Inertia::render('Admin/Destination',[
-            'destination'=> $destination
+            'destination'=> collect($destination)->map(function ($des) {
+                return [
+                    'id'=> $des->id,
+                    'destination'=> $des->destination,
+                    'island_id'=>$des->island_id,
+                    'trip_type_id'=> $des->trip_type_id,
+                    'image'=> $des->image,
+                    'type'=> $des->type,
+                    'expedition'=> $des->expedition,
+                    'overview'=> json_decode($des->overview),
+                    'itinerary'=> json_decode($des->itinerary),
+                    'expert'=> $des->expert,
+                    'accomodation'=> $des->accomodation
+                ];
+            })
         ]);
     }
     public function destinationCEF($slug = null) {
@@ -62,6 +77,7 @@ class AdminController extends Controller
                 'updated_at'=> $dest->updated_at,
                 'expert'=> $dest->expert,
                 'accomodation'=> $dest->accomodation,
+                'expedition'=>$dest->expedition
             ];
         })->first();
         return Inertia::render('Admin/DestinationCE',[
@@ -84,6 +100,7 @@ class AdminController extends Controller
             'accomodation'=>'nullable',
             'itinerary'=>'nullable',
             'overview'=>'nullable',
+            'dates'=>'nullable'
         ]);
         $destinasi = Destination::where('id', $validate['id'] ??null)->first();
         $filename = null;
@@ -131,6 +148,20 @@ class AdminController extends Controller
         $existingAccomodation->except($processedAccomodationIds)->each(function ($acc) {
             $acc->delete();
         });
+        $existingExpedition = Expedition::where('destination_id', $destination->id)->get()->keyBy('id');
+        $processedExpeditionIds = [];
+        foreach($validate['dates'] as $date){
+            $expedition = Expedition::firstOrNew(['id'=> $date['id'] ?? null]);
+            $expedition->date = $date['date'];
+            $expedition->destination_id =$destination->id;
+            $expedition->single_occupancy = $date['singleOcc'];
+            $expedition->double_occupancy = $date['doubleOcc'];
+            $expedition->save();
+            $processedExpeditionIds[]=$expedition->id;
+        }
+        $existingExpedition->except($processedExpeditionIds)->each(function ($exp) {
+            $exp->delete();
+        });
         return redirect()->route('admin.destinationCEF', $destination->id)->with(['alrt'=>'Save']);
     }
 
@@ -162,6 +193,12 @@ class AdminController extends Controller
         return response()->json(['data'=> $expert, 'expertAll'=> $exall]);
     }
 
+    public function accomodation() {
+        $acc = Accomodation::all();
+        return Inertia::render('Admin/Accomodation',[
+            'accomodation'=> $acc
+        ]);
+    }
     public function createAccomodationAxios(Request $request) {
         $validate = $request->validate([
             'name'=>'required',

@@ -17,6 +17,9 @@ const checkCurrentGroup = computed(() => {
     if (path.startsWith('/admin/destination')) {
         return 'destination';
     } 
+    if (path.startsWith('/admin/accomodation')) {
+        return 'accomodation';
+    } 
 })
 const lct = window.location.origin
 </script>
@@ -72,7 +75,7 @@ const lct = window.location.origin
                     <div class=" pb-0 w-full flex flex-col flex-wrap">
                         <NavLink :href="route('admin.destination')" :active="checkCurrentGroup == 'destination'">
                             Destination</NavLink>
-                        <NavLink :href="route('admin.destination')" :active="route().current('admin')">Accomodation</NavLink>
+                        <NavLink :href="route('admin.accomodation')" :active="checkCurrentGroup == 'accomodation'">Accomodation</NavLink>
                     </div>
 
                 </div>

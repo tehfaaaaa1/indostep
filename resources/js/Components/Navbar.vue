@@ -1,6 +1,6 @@
 <script setup>
 import { Link, router } from '@inertiajs/vue3';
-import PrimaryButton from './PrimaryButton.vue';
+import PrimaryButton from './PrimaryButtonGua.vue';
 </script>
 
 <template>
