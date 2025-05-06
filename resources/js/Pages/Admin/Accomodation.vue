@@ -12,12 +12,12 @@ const props = defineProps({
 })
 const accomodation = ref(props.accomodation)
 const form = useForm({
-    name:'',
-    image:'',
-    prev:'',
-    address:'',
-    desc:'',
-    id:''
+    name: '',
+    image: '',
+    prev: '',
+    address: '',
+    desc: '',
+    id: ''
 })
 const handleImageAccomodation = (event) => {
     form.image = event.target.files[0]
@@ -30,15 +30,15 @@ const handleImageAccomodation = (event) => {
         reader.readAsDataURL(input.files[0])
     }
 }
-const editData = (id)=>{
-    const data = accomodation.value.find(p=> p.id == id)
+const editData = (id) => {
+    const data = accomodation.value.find(p => p.id == id)
     form.id = data.id
     form.name = data.name
-    form.address = data.address 
+    form.address = data.address
     form.image = data.image
     form.desc = data.description
     console.log(form.image)
-    modalCE.value=true
+    modalCE.value = true
 }
 const modalCE = ref(false)
 const searchVal = ref(null)
@@ -98,13 +98,11 @@ const lct = window.location.origin
                     </div>
                     <div class="relative">
                         <label for="imageAcc" class="">
-                            <div class="min-h-[30vh]"
-                                v-if="form.prev != '' || form.image != ''">
+                            <div class="min-h-[30vh]" v-if="form.prev != '' || form.image != ''">
                                 <div class="" v-if="form.prev == ''">
-                                    <img :src="lct+'/img/accomodation/'+form.image" alt="">
+                                    <img :src="lct + '/img/accomodation/' + form.image" alt="">
                                 </div>
-                                <div class="w-full flex justify-center items-center"
-                                    v-else-if="form.prev != ''">
+                                <div class="w-full flex justify-center items-center" v-else-if="form.prev != ''">
                                     <img :src="form.prev" alt="" class="w-full ">
                                 </div>
                             </div>
@@ -138,18 +136,19 @@ const lct = window.location.origin
                     <button type="button"
                         class="inline-flex items-center px-4 py-3 border-transparent rounded-md bg-red-500 text-white text-xs tracking-wide font-semibold hover:bg-transparent hover:ring-2 hover:ring-red-500 hover:text-red-500 transition duration-150 ease-in-out"
                         @click="modalCE = false">Close</button>
-                    <PrimaryButton @click=" modalCE = false; createAccomodation()"
-                        class="!bg-blue-600 text-white">Submit</PrimaryButton>
+                    <PrimaryButton @click=" modalCE = false; createAccomodation()" class="!bg-blue-600 text-white">
+                        Submit</PrimaryButton>
                 </div>
             </template>
         </DialogModal>
         <div class="p-8">
             <button type="button" @click="modalCE = true"
                 class="inline-flex items-center px-4 py-2.5 bg-light-green text-dark-green text-xs font-semibold rounded-sm tracking-wider leading-5 hover:bg-transparent hover:ring-1 hover:ring-dark-green transition ease-in-out duration-150">
-            Create accomodation</button>
+                Create Accomodation</button>
         </div>
         <div class="p-2 grid grid-cols-3">
-            <div class="w-sm border border-gray-200 flex flex-col justify-between" v-for="(item, index) in selectedaccomodation" :key="index">
+            <div class="w-sm border border-gray-200 flex flex-col justify-between"
+                v-for="(item, index) in selectedaccomodation" :key="index">
                 <div class="">
                     <img :src="lct + '/img/accomodation/' + item.image" alt=""
                         class="w-full object-cover object-center h-54">
@@ -157,7 +156,8 @@ const lct = window.location.origin
                         <h1 class="text-lg text-black-green font-semibold tracking-wide">{{ item.name }}</h1>
                         <!-- <h2 class="font-medium text-xs tracking-wide uppercase">{{ getDay(item.itinerary) }} Days Starting
                             At</h2> -->
-                        <h2 class="font-medium text-xs tracking-wide line-clamp-5 text-gray-700">{{ item.description }}</h2>
+                        <h2 class="font-medium text-xs tracking-wide line-clamp-5 text-gray-700">{{ item.description }}
+                        </h2>
                         <h2 class="font-medium text-xs tracking-wide text-gray-700">address: {{ item.address }}</h2>
                     </div>
                 </div>

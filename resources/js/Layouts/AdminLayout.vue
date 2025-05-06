@@ -48,11 +48,11 @@ const lct = window.location.origin
         <div class="relative flex flex-col h-full max-h-full ">
             <!-- Header -->
             <header class="mt-4 flex justify-center items-center gap-x-2">
-                <div class="">
+                <Link :href="route('home')">
                     <img :src="lct+'/img/ineco.png'" alt="" class="w-28">
                     <!-- <h1 class="text-2xl tracking-tight font-semibold leading-2 mt-1">Indo <br><span
                             class="font-black text-dark-green tracking-tighter text-3xl ps-0.5">Step</span></h1> -->
-                </div>
+                </Link>
                 <div class="lg:hidden -me-2">
                     <!-- Close Button -->
                     <button type="button"

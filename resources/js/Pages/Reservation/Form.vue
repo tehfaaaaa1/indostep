@@ -1,7 +1,19 @@
 <script setup>
 import PrimaryButton from '../../Components/PrimaryButton.vue';
 import AppLayout from '../../Layouts/AppLayout.vue';
-import { router } from '@inertiajs/vue3';
+import { router, usePage, useForm } from '@inertiajs/vue3';
+
+const { props } = usePage();
+console.log(props)
+const form = useForm({
+    destination: null,
+    traveler_num: null,
+    name: null,
+    email: null,
+    phone: null,
+    message: null,
+})
+const lct = window.location.origin
 </script>
 <template>
     <AppLayout title="Reserve Online">
@@ -22,29 +34,36 @@ import { router } from '@inertiajs/vue3';
                         <div class="text-lg font-medium px-8">Or</div>
                         <div class="basis-1/2 ps-6">
                             <h3>Find</h3>
-                            <select name="" id="" class="border border-gray-500 w-1/2 px-2 py-1">
+                            <select v-model="form.destination" id="" class="border border-gray-500 w-1/2 px-2 py-1">
                                 <option value="">Find your trip</option>
+                                <option :value="item.id" v-for="(item, index) in props.destination">
+                                    {{ item.destination }}
+                                </option>
                             </select>
                         </div>
                     </div>
+                    <img :src="`${lct}/img/destination/${props.destination[form.destination - 1].image}`" alt=""
+                        width="575" v-if="form.destination">
+                    <!-- {{ props.destination[form.destination].image ?? 12 }} -->
                 </div>
 
-                <div class="mt-6">
+                <div class="mt-6" v-if="form.destination">
                     <p>Choose your preferred departure date to proceed.</p>
                     <div class="overflow-hidden">
                         <table class="w-full mt-2 divide-y divide-gray-400">
                             <thead>
                                 <tr class="text-left">
                                     <th class="font-normal px-6 py-3" scope="col">Date</th>
-                                    <th class="font-normal px-6 py-3" scope="col">Double Occupancy</th>
-                                    <th class="font-normal px-6 py-3" scope="col">Single Occupancy</th>
+                                    <th class="font-normal px-6 py-3" scope="col">Price</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="font-light odd:bg-white even:bg-gray-100 hover:bg-gray-100">
-                                    <td class="px-6 py-4">16 May 2025</td>
-                                    <td class="px-6 py-4">Rp 400.000</td>
-                                    <td class="px-6 py-4">Rp 600.000</td>
+                                    <!-- {{ props.destination[form.destination - 1] }} -->
+                                    <td class="px-6 py-4">
+                                        {{ props.destination[form.destination - 1].expedition[0].date }}</td>
+                                    <td class="px-6 py-4">
+                                        Rp. {{ props.destination[form.destination - 1].expedition[0].price }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -84,8 +103,23 @@ import { router } from '@inertiajs/vue3';
                 </div>
                 <PrimaryButton class="mt-6 ms-auto">Next</PrimaryButton>
             </div>
-            <div class="mt-8">
+            <div class="mt-8" v-if="form.destination">
                 <h2 class="text-xl font-medium">3. Accomodation</h2>
+                <div class="">
+                    <!-- <img :src="lct + '/img/accomodation/' + item.image" alt=""
+                        class="w-full object-cover object-center h-54"> -->
+                    <div class="p-3 space-y-2 max-w-1/2">
+                        <h1 class="text-lg text-black-green font-semibold tracking-wide">
+                            Villa House
+                        </h1>
+                        <!-- <h2 class="font-medium text-xs tracking-wide uppercase">{{ getDay(item.itinerary) }} Days Starting
+                            At</h2> -->
+                        <h2 class="font-medium text-xs tracking-wide line-clamp-5 text-gray-700">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum cum sapiente adipisci necessitatibus ad? Quas repellat ab soluta aspernatur veritatis?
+                        </h2>
+                        <h2 class="font-medium text-xs tracking-wide text-gray-700">Address: Jl. Anaxagoras</h2>
+                    </div>
+                </div>
                 <PrimaryButton class="mt-6 ms-auto">Next</PrimaryButton>
             </div>
             <div class="mt-8">
@@ -99,7 +133,8 @@ import { router } from '@inertiajs/vue3';
                 <p>We accept these payments. Press ensure the data is correct before confirming below.</p>
                 <div class="flex flex-col mt-2">
                     <label for="message" class="text-sm">Message (Optional)</label>
-                    <textarea name="" id="message" class="mt-1 w-1/2 min-h-18 border border-gray-300 px-2 py-1"></textarea><br>
+                    <textarea name="" id="message"
+                        class="mt-1 w-1/2 min-h-18 border border-gray-300 px-2 py-1"></textarea><br>
                     <span class="text-dark-green">
                         Confirming will send an email to your Person-In-Charge's email address.
                     </span>
