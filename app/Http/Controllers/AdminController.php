@@ -199,6 +199,12 @@ class AdminController extends Controller
             'accomodation'=> $acc
         ]);
     }
+    public function expert() {
+        $acc = Expert::all();
+        return Inertia::render('Admin/Expert',[
+            'expert'=> $acc
+        ]);
+    }
     public function createAccomodationAxios(Request $request) {
         $validate = $request->validate([
             'name'=>'required',

@@ -2,7 +2,7 @@
 import { Head, usePage } from '@inertiajs/vue3';
 import { Link } from '@inertiajs/vue3';
 // import PrimaryButton from './PrimaryButton.vue';
-import NavLink from '../Components/NavLink.vue';
+import NavLink from '../Components/NavLinkGua.vue';
 import { computed } from 'vue';
 defineProps({
     title: String,
@@ -19,6 +19,9 @@ const checkCurrentGroup = computed(() => {
     } 
     if (path.startsWith('/admin/accomodation')) {
         return 'accomodation';
+    } 
+    if (path.startsWith('/admin/expert')) {
+        return 'expert';
     } 
 })
 const lct = window.location.origin
@@ -76,6 +79,7 @@ const lct = window.location.origin
                         <NavLink :href="route('admin.destination')" :active="checkCurrentGroup == 'destination'">
                             Destination</NavLink>
                         <NavLink :href="route('admin.accomodation')" :active="checkCurrentGroup == 'accomodation'">Accomodation</NavLink>
+                        <NavLink :href="route('admin.expert')" :active="checkCurrentGroup == 'expert'">Expert</NavLink>
                     </div>
 
                 </div>
