@@ -18,9 +18,10 @@
         <li><strong>Name:</strong> {{ $formData['name'] ?? 'N/A' }}</li>
         <li><strong>Email:</strong> {{ $formData['email'] ?? 'N/A' }}</li>
         <li><strong>Phone:</strong> {{ $formData['phone'] ?? 'N/A' }}</li>
-        <li><strong>Desired Trip:</strong> {{ $formData['desired_trip'] ?? 'N/A' }}</li>
-        <li><strong>Desired Dates:</strong> {{ $formData['desired_dates'] ?? 'N/A' }}</li>
-        <li><strong>Number of Participants:</strong> {{ $formData['num_participants'] ?? 'N/A' }}</li>
+        <li><strong>Desired Trip:</strong> {{ $formData['destination'] ?? 'N/A' }}</li>
+        <li><strong>Desired Dates:</strong> {{ $formData['dates'] ?? 'N/A' }}</li>
+        <li><strong>Number of Participants:</strong> {{ $formData['traveler_num'] ?? 'N/A' }}</li>
+        <li><strong>Number of Participants:</strong> {{ $formData['message'] ?? 'N/A' }}</li>
     </ul>
 </body>
 

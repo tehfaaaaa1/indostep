@@ -31,37 +31,38 @@ class UserController extends Controller
     {
         return Inertia::render('Contact');
     }
-    public function destinationDetail($id) {
+    public function destinationDetail($id)
+    {
         $destinations = Destination::where('id', $id)->get();
-        if(!is_null($id)){
-            foreach($destinations as $destination){
-                foreach($destination?->expert as $ex){
+        if (!is_null($id)) {
+            foreach ($destinations as $destination) {
+                foreach ($destination?->expert as $ex) {
                     $p = $ex->expert;
                 }
-                foreach($destination?->accomodation as $ac){
-                    $a= $ac->accomodation;
+                foreach ($destination?->accomodation as $ac) {
+                    $a = $ac->accomodation;
                 }
             }
         }
         $desti = collect($destinations)->map(function ($dest) {
             return [
-                'id'=> $dest->id,
-                'destination'=> $dest->destination,
-                'island_id'=> $dest->island_id,
-                'trip_type_id'=> $dest->trip_type_id,
-                'overview'=> json_decode($dest->overview),
-                'itinerary'=> json_decode($dest->itinerary),
-                'image'=> $dest->image,
-                'created_at'=> $dest->created_at,
-                'updated_at'=> $dest->updated_at,
-                'expert'=> $dest->expert,
-                'accomodation'=> $dest->accomodation,
-                'expedition'=>$dest->expedition,
-                'type'=> $dest->type
+                'id' => $dest->id,
+                'destination' => $dest->destination,
+                'island_id' => $dest->island_id,
+                'trip_type_id' => $dest->trip_type_id,
+                'overview' => json_decode($dest->overview),
+                'itinerary' => json_decode($dest->itinerary),
+                'image' => $dest->image,
+                'created_at' => $dest->created_at,
+                'updated_at' => $dest->updated_at,
+                'expert' => $dest->expert,
+                'accomodation' => $dest->accomodation,
+                'expedition' => $dest->expedition,
+                'type' => $dest->type
             ];
         })->first();
-        return Inertia::render('Destination/Detail',[
-           'destination'=> $desti,
+        return Inertia::render('Destination/Detail', [
+            'destination' => $desti,
         ]);
     }
     public function destination()
@@ -88,6 +89,11 @@ class UserController extends Controller
     public function reserve()
     {
         $destination = Destination::all();
+        foreach ($destination as $d) {
+            foreach ($d->accomodation as $a) {
+                $s = $a->accomodation;
+            }
+        }
         return Inertia::render('Reservation/Form', [
             'destination' => collect($destination)->map(function ($des) {
                 return [
@@ -106,11 +112,24 @@ class UserController extends Controller
             })
         ]);
     }
-    public function reservePost()
+    public function reservePost(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'nullable', // Example validation
+            'destination' => 'required',
+            'dates' => 'nullable',
+            'traveler_num' => 'required',
+            'message' => 'nullable|string',
+        ]);
+        // dd($validated, 'diluar try');
+        
         try {
+            // dd($validated, 'try');
+
             Mail::to('fateeh.falah.itxpro@gmail.com')
-                ->send(new InquiryReceivedNotification('yey'));
+                ->send(new InquiryReceivedNotification($validated));
 
             return redirect()->back()->with('success', 'Your inquiry has been sent!');
         } catch (\Exception $e) {

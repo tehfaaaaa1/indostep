@@ -1,7 +1,9 @@
 <script setup>
+import { ref } from 'vue';
 import PrimaryButton from '../../Components/PrimaryButton.vue';
 import AppLayout from '../../Layouts/AppLayout.vue';
 import { router, usePage, useForm } from '@inertiajs/vue3';
+import PrimaryButtonGua from '../../Components/PrimaryButtonGua.vue';
 
 const { props } = usePage();
 console.log(props)
@@ -12,7 +14,38 @@ const form = useForm({
     email: null,
     phone: null,
     message: null,
+    dates: null,
 })
+
+const accomodation = ref([])
+const getAcc = () => {
+    const destinstion = props.destination.find(p => p.id == form.destination)
+    accomodation.value = destinstion.accomodation
+    // console.log(destinstion, accomodation.value)
+}
+const expedition = ref([])
+const getExp = () => {
+    const destinstion = props.destination.find(p => p.id == form.destination)
+    expedition.value = destinstion.expedition
+    // console.log(destinstion, expedition.value)
+}
+const destination = ref([])
+const getDes = () => {
+    const destinstion = props.destination.find(p => p.id == form.destination)
+    destination.value = destinstion
+    // console.log(destinstion, destination.value)
+}
+const dates = (id) => {
+    const exp = expedition.value.find(p => p.id == id)
+    form.dates = exp.date
+}
+const checkDates = (val) => {
+    const exp = form.dates == val
+    return exp
+}
+const submit = () => {
+    form.post(route('reservation.post'))
+}
 const lct = window.location.origin
 </script>
 <template>
@@ -34,7 +67,8 @@ const lct = window.location.origin
                         <div class="text-lg font-medium px-8">Or</div>
                         <div class="basis-1/2 ps-6">
                             <h3>Find</h3>
-                            <select v-model="form.destination" id="" class="border border-gray-500 w-1/2 px-2 py-1">
+                            <select @change="getAcc(); getExp(); getDes()" v-model="form.destination" id=""
+                                class="border border-gray-500 w-1/2 px-2 py-1">
                                 <option value="">Find your trip</option>
                                 <option :value="item.id" v-for="(item, index) in props.destination">
                                     {{ item.destination }}
@@ -42,8 +76,8 @@ const lct = window.location.origin
                             </select>
                         </div>
                     </div>
-                    <img :src="`${lct}/img/destination/${props.destination[form.destination - 1].image}`" alt=""
-                        width="575" v-if="form.destination">
+                    <img :src="`${lct}/img/destination/${destination.image}`" alt="" width="575" v-if="form.destination"
+                        class="mt-4">
                     <!-- {{ props.destination[form.destination].image ?? 12 }} -->
                 </div>
 
@@ -55,15 +89,26 @@ const lct = window.location.origin
                                 <tr class="text-left">
                                     <th class="font-normal px-6 py-3" scope="col">Date</th>
                                     <th class="font-normal px-6 py-3" scope="col">Price</th>
+                                    <th class="font-normal px-6 py-3" scope="col">Select</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="font-light odd:bg-white even:bg-gray-100 hover:bg-gray-100">
+                                <tr class="font-light odd:bg-white even:bg-gray-100 hover:bg-gray-100"
+                                    v-for="item in expedition" :class="checkDates(item.date) ? 'bg-gray-200' : ''">
                                     <!-- {{ props.destination[form.destination - 1] }} -->
                                     <td class="px-6 py-4">
-                                        {{ props.destination[form.destination - 1].expedition[0].date }}</td>
+                                        {{ item.date }}</td>
                                     <td class="px-6 py-4">
-                                        Rp. {{ props.destination[form.destination - 1].expedition[0].price }}</td>
+                                        Rp. {{ item.price }}</td>
+                                    <td class="px-6 py-4">
+                                        <PrimaryButtonGua @click="dates(item.id)">Select Dates</PrimaryButtonGua>
+                                    </td>
+                                    <td v-if="form.dates"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"
+                                            v-if="checkDates(item.date)">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m4.5 12.75 6 6 9-13.5" />
+                                        </svg></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -79,7 +124,7 @@ const lct = window.location.origin
                 <div class="mt-4">
                     <label for="number-traveler" class="font-medium text-lg">- Number of Travelers</label>
                     <div class="">
-                        <input type="number" name="" id="number-traveler" class="border border-gray-500 px-2 py-1 w-14">
+                        <input type="number" name="" id="number-traveler" class="border border-gray-500 px-2 py-1 w-14" v-model="form.traveler_num">
                         Orang
                     </div>
                 </div>
@@ -89,15 +134,15 @@ const lct = window.location.origin
                     <div class="grid grid-cols-3 w-3/4">
                         <div class="flex flex-col mt-2 pe-6">
                             <label for="name-traveler" class="mb-1">Full Name</label>
-                            <input type="text" name="" id="name-traveler" class="border border-gray-500 px-2 py-1">
+                            <input type="text" name="" id="name-traveler" class="border border-gray-500 px-2 py-1" v-model="form.name">
                         </div>
                         <div class="flex flex-col mt-2 pe-6">
-                            <label for="name-traveler" class="mb-1">Email</label>
-                            <input type="text" name="" id="name-traveler" class="border border-gray-500 px-2 py-1">
+                            <label for="email" class="mb-1">Email</label>
+                            <input type="text" name="" id="email" class="border border-gray-500 px-2 py-1" v-model="form.email">
                         </div>
                         <div class="flex flex-col mt-2 pe-6">
                             <label for="phone-traveler" class="mb-1">Phone Number</label>
-                            <input type="text" name="" id="phone-traveler" class="border border-gray-500 px-2 py-1">
+                            <input type="number" name="" id="phone-traveler" class="border border-gray-500 px-2 py-1" v-model="form.phone">
                         </div>
                     </div>
                 </div>
@@ -105,19 +150,20 @@ const lct = window.location.origin
             </div>
             <div class="mt-8" v-if="form.destination">
                 <h2 class="text-xl font-medium">3. Accomodation</h2>
-                <div class="">
-                    <!-- <img :src="lct + '/img/accomodation/' + item.image" alt=""
-                        class="w-full object-cover object-center h-54"> -->
-                    <div class="p-3 space-y-2 max-w-1/2">
+                <div class="" v-for="(item, index) in accomodation" :key="index">
+                    <img :src="lct + '/img/accomodation/' + item.accomodation.image" alt=""
+                        class="w-1/2 object-contain object-center h-[500px] mx-auto">
+                    <div class="p-3 space-y-2 max-w-1/2 mx-auto">
                         <h1 class="text-lg text-black-green font-semibold tracking-wide">
-                            Villa House
+                            {{ item.accomodation.name }}
                         </h1>
                         <!-- <h2 class="font-medium text-xs tracking-wide uppercase">{{ getDay(item.itinerary) }} Days Starting
                             At</h2> -->
                         <h2 class="font-medium text-xs tracking-wide line-clamp-5 text-gray-700">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum cum sapiente adipisci necessitatibus ad? Quas repellat ab soluta aspernatur veritatis?
+                            {{ item.accomodation.description }}
                         </h2>
-                        <h2 class="font-medium text-xs tracking-wide text-gray-700">Address: Jl. Anaxagoras</h2>
+                        <h2 class="font-medium text-xs tracking-wide text-gray-700">Address: {{
+                            item.accomodation.address }}</h2>
                     </div>
                 </div>
                 <PrimaryButton class="mt-6 ms-auto">Next</PrimaryButton>
@@ -133,12 +179,15 @@ const lct = window.location.origin
                 <p>We accept these payments. Press ensure the data is correct before confirming below.</p>
                 <div class="flex flex-col mt-2">
                     <label for="message" class="text-sm">Message (Optional)</label>
-                    <textarea name="" id="message"
+                    <textarea name="" id="message" v-model="form.message"
                         class="mt-1 w-1/2 min-h-18 border border-gray-300 px-2 py-1"></textarea><br>
                     <span class="text-dark-green">
                         Confirming will send an email to your Person-In-Charge's email address.
                     </span>
-                    <button type="button" @click="router.post(route('reservation.post'))" class="mt-6 ms-auto">
+                    <!-- <button type="button" @click="router.post(route('reservation.post'))" class="mt-6 ms-auto">
+                        <PrimaryButton class="">Confirm</PrimaryButton>
+                    </button> -->
+                    <button type="button" @click="submit" class="mt-6 ms-auto">
                         <PrimaryButton class="">Confirm</PrimaryButton>
                     </button>
                 </div>
